@@ -1,0 +1,62 @@
+
+<title>布林值</title>
+
+<script>
+    a=100;
+    b=100;
+    c=200;
+    str1 = 'AA';
+    str2 = 'AA';
+    str3 = 'BB';
+    strNum = '200';
+
+///////////////////////////////////////////////////////////
+    console.log(a==b); //true
+    console.log(a!=b); //false
+
+    console.log(a==c); //false
+    console.log(a!=c); //true
+
+  
+
+    console.log(c == strNum); //true,因為==是不嚴謹的比較，不會考慮型別type
+    console.log(c === strNum); //false,當使用===是不嚴謹的比較，不會考慮型別type
+    console.log(c !== strNum); //true
+
+    console.clear();
+
+/////////////////////////////比較，比大小//////////////////////////////
+    d=100;
+    e=200;
+
+    console.log(d>e);//false
+    console.log(d<e);//true
+    console.log(d>=100);//true
+    console.log(e<=200);//true
+
+    console.clear();
+
+
+    ////////////////////////複合邏輯，將多個布林值組合起來的結果為何布林值//////////////////////////
+    // && and, || or
+    //and,都要是true,結果是true。只要有一個false,結果就是false。
+    console.log(true && false && true); //false
+    console.log(true && true && true); //true
+
+    console.clear();
+
+    //|| or,或者的意思，只要有一個true，結果就是true,只要碰到一個true，結果確定就是true
+
+    console.log( false || false || true); //true
+    console.log( false || false || false); //false
+
+    // 複合式寫法
+    // (true || false) && (false || true); 
+    // ((true && true) || (false && false)) || false;
+
+
+
+
+
+
+</script>
