@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>if else</title>
+</head>
+<body>
+    <script>
+        if(200 < 100){
+            console.log('is true');
+        } else {
+            console.log('is false');
+        }
+
+        console.clear();
+
+        a = 150;
+        if (a > 200){
+            console.log('超過200');
+        }
+        else if (a > 100){
+            console.log('超過100');
+        }
+        else {
+            console.log('100以下');
+        }
+        console.log('done');
+        console.clear();
+
+        /////////////
+
+        const
+            height = 190;
+            face = true;
+            cash = 50000;
+
+        if(height > 180 && face && cash > 10000){
+            console.log('是高富帥 100分');
+        } else {
+            console.log('不是高富帥 0~99分');
+        }
+
+        if(height > 180 || face || cash > 10000){
+            console.log('高富帥至少有一個以上成立');
+        } else {
+            console.log('高富帥一個都沒有');
+        }
+
+        //題目：高帥至少有一個要有，但一定要有錢，才願意交往
+
+        //if((height > 100 || face) && (cash > 10000)){ //兩者一樣
+        if((cash > 10000) && (height > 100 || face)){ //兩者一樣，但這串會跑比較快
+            console.log('還滿意可以試試交往');
+        }
+        else{
+            console.log('當朋友就好...');
+        }
+        /*
+        if()內，不一定要放布林值，只要有值就可以當true,要小心使用
+        
+        ex:
+        if(30) console.log('A')
+        if('AA') console.log('A')
+        
+        if(0) console.log('A')
+        if(null) console.log('A')
+        if(undefined) console.log('A')
+        
+        */
+       console.clear();
+
+        let day = 7;
+
+        // let msg;
+        // if(day > 5) msg = '假日';
+        //else msg = '平日';
+
+       //三元運算子
+        let msg = day > 5 ? '假日' : '平日';
+        // ? true 會出現的東西:
+        //: false 會出現的東西;
+        console.log(msg);
+
+
+
+    </script>
+    
+</body>
+</html>

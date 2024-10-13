@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>for迴圈</title>
+</head>
+
+<body>
+    <script>
+        //for(初始動作;條件;結束動作){}
+
+        //ex: hello跑5次
+        let str = '';
+
+        for (let i = 0 ; i < 5 ; i++){
+            //console.log('hello', i );
+            str += 'A';
+        }
+        console.log(str);
+
+        console.clear();
+
+        ////////////////////////////
+        //for (let i = 0 ; i < 5 ; i++){
+        //    console.log(i); //0,1,2,3,4
+        //}
+
+        //console 1,4,7,10
+        for (let i = 1; i <= 10 ; i+=3){
+            console.log(i);
+        }
+        //另一種寫法
+        /*for (let i = 1; i < 4 ; i++){
+            console.log(i*3+1);
+        }
+        */
+
+        //console 1,3,5,7,9,11
+        for ( let j = 1; j <= 11 ; j+=2){
+            console.log(j);
+        }
+        //console 5,10,15,20,25
+        for ( let k = 5; k <= 25 ; k+=5){
+            console.log(k);
+        }
+        //另一種寫法
+        //for(let n = 1; n <= 5; n++) console.log(5*n);
+        
+        //console 1,2,4,8,16,32,64
+        for(let i = 1; i < 100 ; i *= 2 )console.log(i);
+        //另一種寫法(初學者用)
+        let count = 1;//全域變數，透過變數暫存，缺點是別處可以使用或修改這個count
+        for(let i = 0; i<7; i++){
+            console.log(count);
+            count = count * 2;
+        }
+        console.clear();
+
+
+        //////////////////////////////////////
+        //可以使用雙for，一個控制i，一個控制j
+        //印出全部的九九乘法表
+        //挑戰：如何只用一個for來完成
+
+        /*
+        for (let i = 0; i < 10 ; i++){
+            for (let j = 0; j < 10 ; j++){
+                console.log('??????');
+            }
+        */
+       //自己寫的雙迴圈
+        /*for (let i = 2; i <= 9 ; i++){
+            for (let j = 1; j <= 9 ; j++){
+                console.log(i,'*',j,'=',i*j);
+            }
+        };
+        */
+       //老師的解法
+        for (let i = 2; i <= 9 ; i++){
+            for (let j = 1; j <= 9 ; j++){
+                console.log('${i}*${j} = ${i * j}');
+            }
+            if (i < 9) console.log('----------------');
+        }
+
+        //${i}*${j} = ${i*j}
+        //2*1=2
+        //2*2=4
+        //2*3=6
+        //2*4=8
+        //2*5=10
+        //2*6=12
+        //2*7=14
+        //2*8=16
+        //2*9=18
+        //---------------------
+        //3*1=3
+        //......
+        //3*9=27
+        //---------------------
+        //.....
+        //9*9=81
+        
+
+
+    </script>
+</body>
+</html>
