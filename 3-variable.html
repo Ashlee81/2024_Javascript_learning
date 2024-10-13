@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>變數</title>
+</head>
+<body>
+    <script>
+        a = 100; //臨時變數，不要這樣寫，會被罵
+        var b = 200; //宣告變數，跟瀏覽器正式宣告一個變數的存在
+        var c; //宣告，只是還沒有定義任何值，讀到的執會是 undefined
+        var e = 'EEE';
+        
+        function test(){
+            var d = 100; //宣告在一個FN內，只作用在這個FN的作用域內
+            console.log(b); //b是一個全域變數，瀏覽器可以讀到它
+            console.log(d); //d讀的到是100
+        }
+        
+        test();
+
+        console.log(b);
+        // console.log(d); //不認識d，因為它是個區間變數，瀏覽器無法得知它
+        
+        /*筆記：可把FN看做是一個房間(區間變數)，外面的人不會得知房間內的擺設
+        而全域變數則是公共空間，每個人都可以得知擺設*/
+        console.clear();
+
+         ///////////////////////////////////////////////
+        function test2(){
+            var b=100;
+            console.log(b);
+        }
+
+        console.log('b=', b);
+        test2();
+        console.log('b=', b);
+
+        //////////////////////////////////////////////////////////
+
+        console.log('e=',e);
+        if(true){
+            var e = 100; //if的{}不是一個區間是一個區塊(這是不太好的副作用)，它是個全域變數，這裡的e又重新被宣告一次
+            console.log(e);
+        }
+
+        console.log('e=',e);
+
+        var e = true; //可重新被宣告，這是不太好的副作用
+        console.log(e);
+
+
+
+
+    </script>
+</body>
+</html>
