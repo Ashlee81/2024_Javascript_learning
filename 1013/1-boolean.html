@@ -1,23 +1,22 @@
-
 <title>布林值</title>
 
 <script>
-    a=100;
-    b=100;
-    c=200;
+    a = 100;
+    b = 100;
+    c = 200;
     str1 = 'AA';
     str2 = 'AA';
     str3 = 'BB';
     strNum = '200';
 
-///////////////////////////////////////////////////////////
-    console.log(a==b); //true
-    console.log(a!=b); //false
+    ///////////////////////////////////////////////////////////
+    console.log(a == b); //true
+    console.log(a != b); //false
 
-    console.log(a==c); //false
-    console.log(a!=c); //true
+    console.log(a == c); //false
+    console.log(a != c); //true
 
-  
+
 
     console.log(c == strNum); //true,因為==是不嚴謹的比較，不會考慮型別type
     console.log(c === strNum); //false,當使用===是不嚴謹的比較，不會考慮型別type
@@ -25,14 +24,14 @@
 
     console.clear();
 
-/////////////////////////////比較，比大小//////////////////////////////
-    d=100;
-    e=200;
+    /////////////////////////////比較，比大小//////////////////////////////
+    d = 100;
+    e = 200;
 
-    console.log(d>e);//false
-    console.log(d<e);//true
-    console.log(d>=100);//true
-    console.log(e<=200);//true
+    console.log(d > e);//false
+    console.log(d < e);//true
+    console.log(d >= 100);//true
+    console.log(e <= 200);//true
 
     console.clear();
 
@@ -47,11 +46,11 @@
 
     //|| or,或者的意思，只要有一個true，結果就是true,只要碰到一個true，結果確定就是true
 
-    console.log( false || false || true); //true
-    console.log( false || false || false); //false
+    console.log(false || false || true); //true
+    console.log(false || false || false); //false
 
     // 複合式寫法
-    // (true || false) && (false || true); 
+    // (true || false) && (false || true);
     // ((true && true) || (false && false)) || false;
 
 
