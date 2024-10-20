@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>物件</title>
+</head>
+
+<body>
+  <script>
+    //物件object，專拿來存放資料，陣列拿來計算整理用。
+    const stdA = {
+      name: 'loki',
+      age: 18,
+      gender: 'male',
+      alive: true,
+      say: () => console.log('hello~')
+    };
+
+    // const { name, age, gender, alive, say } = stdA;
+    // const stdB = { name, age, gender, alive, say };
+
+    // const stdB = { ...stdA };//解構stdA，再指定給stdB
+    // stdB.name = 'jack';
+    // stdB.age = 25;
+    // stdA = { ...stdB };
+
+    //重新指定stdA裡面的某些值，後面重複的值會蓋掉前面的值
+    // stdA={
+    //   ...stdA,
+    //   name:'jack'
+    //   alive: false
+    // }
+
+    const mdy = {
+      name: 'jack',
+      alive: false
+    }
+
+    stdA = {
+      ...stdA,
+      ...mdy
+    }
+
+
+
+  </script>
+</body>
+
+</html>

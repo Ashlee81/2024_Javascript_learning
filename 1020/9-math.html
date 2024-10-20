@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>建構式數學</title>
+</head>
+
+<body>
+  <script>
+    console.log(Math.round(3.4));//四捨五入
+    console.log(Math.ceil(3.4));//無條件進位
+    console.log(Math.floor(3.9));//無條件捨去
+
+    console.clear();
+
+    console.log(Math.random());//提供一個浮點數，介於0(包含)~1(不包含)之間的亂數
+
+    // console.clear();
+
+    //ex 0~10隨機整數，產生10組
+    for (let i = 0; i < 10; i++) {
+      // let num = Math.random();//0.8557630769145452
+      // num *= 10;//8.557630769145452
+      // num=Math.floor(num);//8
+      // console.log(num);
+
+      console.log(Math.floor(Math.random() * 10));
+    }
+    console.clear();
+
+    //ex：隨機整數0~10,手上0~0.9999999(機率固定)
+    //0~0.9999999*10(機率固定)
+    //0~9.9999999(機率固定上萬組)
+
+    //0~9(就算去掉小數點，機率固定)
+
+    //ex:產生隨機整數0~15
+    let Num15 = Math.floor(Math.random() * 16);
+    console.log(Num15);
+
+
+    //ex 45~80的隨機整數，產生一個數就好
+    //ex (0+45)~(35+45)的隨機整數，產生一個數就好
+    //ex 0~35的隨機整數，之後再加45，產生一個數就好
+
+    let Num45to80 = Math.random();
+    Num45to80 *= 36;
+    Num45to80 += 45;
+    Num45to80 = Math.floor(Num45to80);
+    console.log(Num45to80);
+
+    // let Num45to80 = Math.floor(Math.random() * 16);//還沒寫完
+
+  //XXXXXXXXXXXXXX這部分邏輯不太懂XXXXXXXXXXXXXXXXXXXXXXXX
+  //還沒寫完
+  // const rand=(min,max)=>{
+  //   let Num45to80=Math.floor(Math.random()*(max-))
+  // }
+
+
+    //發明一個fn名字為rand(min,max)=>可指定參數mix~max之間的隨機整數
+    //然後塞入一個陣列10，裡面都是rand()產出的隨機整數
+
+    // function rand(min, max) {
+    //   return;
+    // }
+
+
+
+
+    //exam 產生6個數字 1~49
+
+  </script>
+</body>
+
+</html>
