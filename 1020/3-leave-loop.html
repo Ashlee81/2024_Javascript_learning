@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>中斷迴圈</title>
+</head>
+
+<body>
+  <script>
+
+    for (let i = 0; i < 10; i++) {
+      if (i === 4) continue;//跳過這回合，但迴圈會繼續跑
+      if (i == 7) break;//破壞這個迴圈，直接結束for迴圈
+      console.log(i);
+    }
+
+    console.clear();
+
+    
+    function parrot(str) {
+      
+      //寫法2
+      //如果把變數用布林值去思考，只要填入任何東西都是true
+      //反之0 null undefined 空字串都是false
+      //布林值前面增加!有相反的意思，例如：!flase會變成true
+
+      if (!str) {
+        console.log('....parrot dont say anything')
+        return;
+      }
+
+      let j = 4;
+      while (j > 0) {
+        console.log('阿~~~~阿~~~~');
+        if (str === 'mute') return;
+        console.log(`${str}~~~~~~~~~`);
+        j--
+      }
+
+    }
+
+    parrot();
+
+  </script>
+
+</body>
+
+</html>
