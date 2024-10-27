@@ -1,72 +1,72 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>函式</title>
 </head>
+
 <body>
     <script>
         //自訂函式function，名字為hello，他沒有傳遞參數，他的工作是印出hello world
         function hello(name = 'to YOU') {
-            console.log('hello world, ${name} !!');
-    
-            /*
-            if (name === undefined) console.log('error , plz input name');
-            else console.log('hrlloe world, ${name}!!');
-            */
+            console.log(`hello world,${name}!!`);
+
+            // if (name === undefined) console.log('error , plz input name');
+            // else console.log('hrlloe world, ${name}!!');
         }
-    
-       // hello(); //名為hello函式，透過()符號執行
-       //hello('Loki');
-       //hello('Jocker');
-       //hello('Van');
-       hello();
-    
-       console.clear(); 
-    
-       //宣告一個變數，這個變數為FN的變數
+
+        hello(); //呼叫名為hello的函式，透過()符號執行
+        //hello('Loki');//*括弧內填入參數
+        //hello('Jocker');
+        //hello('Van');
+
+        // console.clear();
+
+        word = function () {//匿名函式:沒有名稱的fn
+            console.log('this is the word');
+        }
+
+        //宣告一個變數(varHello1)為一個"匿名"函式，因此這邊的變數=函式
         varHello1 = function (name) { //匿名函式，沒有名字的fn
-            console.log('hello ${name}!!');
+            console.log(`hello ${name}!!`);
         };
-    
+        //宣告一個變數(varHello2)為一"帶名字"的函式
         varHello2 = function sayhello(name) { //帶名字的fn
-            console.log('hello ${name}!!');
+            console.log(`hello ${name}!!`);
         };
-    
-        (function(){
+
+        (function () {
             console.log('hello world');
         })(); //左邊()匿名函式宣告，右邊()直接執行
 
         console.clear(); 
 
         ///////////
-        say1 = function (name){
+        say1 = function (name) {
             str = 'hello' + name;
-            return str;
-            console.log('done');
+            return str;//函式一遇到return，return之後的程式就不會被執行
+            console.log('done');//此行不會運作
         }
         ans = say1('Loki');
         console.log(ans);
-        
 
-        say2 = function (name){
+        //↓↓↓↓ say1更精簡的寫法 ↓↓↓↓↓
+        say2 = function (name) {
             return 'hello' + name;
         }
         console.log(say2('Loki'));
 
 
-        say3 = function (name){
+        say3 = function (name) {
             console.log('---------------');
             return 'hello' + name;
         }
         console.log(say3('Loki'));
 
-    
+
     </script>
 </body>
+
 </html>
-<title>自訂函式</title>
-
-

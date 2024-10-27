@@ -1,40 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>let變數,const常數</title>
 </head>
+
 <body>
     <script>
         let a = 100; //宣告一個變數(變數=可以變化的數據)
         //...經過幾百行後，又不小心宣告同名的a變數
 
         //let a = 'A'; //錯誤，let不可以重新宣告
-        a='A'; //ok，不重新宣告，但可重新指定
+        a = 'A'; //ok，不重新宣告，但可重新指定"值"
         console.log(a);
 
-        if(true){ //let在區塊作用域底下，可以獨立宣告成為{}內變數且獨自使用
+        if (true) { //let在區塊作用域底下，可以獨立宣告成為{}內變數且獨自使用
             //let a = 'A';
             //let b = 'B';
-            let a = 'A' , b = 'B'
-            console.log(a , b);
+            let a = 'A', b = 'B'//同時宣告a、b兩個變數的寫法
+            console.log(a, b);
         }
-        //console.log(a , b);
+        console.log(a);
+        console.log(b);//錯誤、讀不到，因為b是只作用在if{}內的變數
 
         console.clear();
 
         ///////////////////////////////////////////
         const c = 100; //宣告一個常數(=不可以變化且常駐的數)，目前屬於全域常數
         console.log(c);
-        //c = 'C' //錯誤
+        //c = 'C' //錯誤，不可重新指定"值"
 
-        if(true){
+        if (true) {
             const c = 'C'; //{}常數，此區塊獨用，不會讀取到外面的c
             console.log(c);
         }
 
-        
+
         ///////////////////////////////////////////
 
         console.clear();
@@ -42,8 +45,8 @@
         //null vs undefined vs 空值 vs NaN
         //**註：typeof()可以檢查任何東西
 
-        let aa = null; // 塞一個值為"沒有東西的特別obj"，有值為null
-        let bb; // undefined就是沒有任何東西指定給他，沒有賦予值
+        let aa = null; // 塞一個值為"沒有東西的特別object"，"有值"為null
+        let bb; // undefined就是沒有任何東西指定給他，就是沒有賦予"值"
         let cc = ''; //string空字串
         let dd = 5 * 'A'; // number,NaN為非數字 Not a Number
 
@@ -51,4 +54,5 @@
 
     </script>
 </body>
+
 </html>

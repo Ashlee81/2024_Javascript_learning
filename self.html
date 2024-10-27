@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自我練習：函式</title>
+</head>
+
+<body>
+    <script>
+        x = 'Hello';
+        y = "world";
+        console.log(x + " " + y);
+
+        console.clear();
+
+        x = 100;
+        y = 100;
+
+        console.log(x + y);
+        console.clear();
+
+        function hello(name) {
+            console.log(`歡迎你!${name}`);
+        }
+        hello('亞璇');
+        console.clear();
+
+        function total(price, amount, dis) {
+            return price * amount * dis;
+        }
+        console.log(`總額${total(800, 5, 0.8)}`);
+
+        console.clear();
+
+        say = function (name) {
+            str = `Hello!${name}`;
+            console.log(str);
+            return name;
+        }
+        say("Ashlee");
+
+    </script>
+
+</body>
+
+</html>
