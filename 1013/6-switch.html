@@ -1,56 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Switch</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Switch</title>
 </head>
+
 <body>
-    <script>
+  <script>
+    //switch case適用於有多個條件需要判斷時，比if else更精簡 
+    const lang = 'jp';
+    let msg = null;
 
-        const lang = 'jp'
-        let msg = null;
-        
-        switch (lang) {
-            case 'jp':
-                console.log('jp');
-                msg = '日本';
-                break;
-            case 'kr':
-                console.log('kr');
-                msg = '韓國';
-                break;
-            case 'en':
-                console.log('en');
-                msg = '英國';
-                break;
-            case 'tw':
-                console.log('tw');
-                msg = '台灣';
-                break; //破壞switch，中止這個switch後續的工作
-            default:
-                msg = '比愛心'
-                break;
-        }
+    switch (lang) {
+      case 'jp':
+        console.log('jp');
+        msg = '日本';
+        break; //破壞switch，中止這個switch後續的工作
+               //如果沒寫的話，就算已經找到符合條件的case，還是會繼續執行後續的工作 
 
-        console.log(msg)
+      case 'kr':
+        console.log('kr');
+        msg = '韓國';
+        break;
 
-        console.clear();
+      case 'en':
+        console.log('en');
+        msg = '英國';
+        break;
 
-        //會員編號
+      case 'tw':
+        console.log('tw');
+        msg = '台灣';
+        break;
 
-        const memberState = 'new'; //old
+      default:
+        msg = '錯誤，輸入的不是一個國家'
+        break;
+    }
 
-        switch (memberState){
-            case 'new':
-                console.log('歡迎使用者，您是第一次登入');
-            case 'old':
-                console.log('請問你需要什麼服務呢?');
-            break;
-        }
+    console.log(msg)
+
+    // console.clear();
+
+    //會員編號
+
+    const memberState = 'new'; //old
+
+    switch (memberState) {
+      case 'new':
+        console.log('歡迎使用者，您是第一次登入');
+        // console.log('請問你需要什麼服務呢?');
+        // break;
+        //省略break的寫法
+      case 'old':
+        console.log('請問你需要什麼服務呢?');
+        break;
+    }
+
+    
 
 
 
-    </script>    
+  </script>
 </body>
+
 </html>
