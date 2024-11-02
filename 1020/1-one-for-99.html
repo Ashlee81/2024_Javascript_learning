@@ -2,17 +2,24 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>如何只用一個for來完成九九乘法表</title>
 </head>
 
 <body>
-    <script>
-        for (let i = 2, j = 1; i < 10 && j < 10; j++) {
+  <script>
+    //for，利用一個自訂變數，來決定「要控制迴圈跑幾次」，直至條件不成立
 
-        }
-    </script>
+    for (let i = 2, j = 1; (i < 10) && (j < 10); j++) {
+      console.log(`${i}*${j}=${i * j}`);
+      if (j == 9) {
+        i++;
+        j = 0;
+        console.log('----------------');
+      }
+    }
+  </script>
 
 </body>
 
