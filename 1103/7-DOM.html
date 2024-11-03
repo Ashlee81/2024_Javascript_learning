@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <script>
+    let getEl = null;//提升為全域變數
+    onload = function () {
+      //當視窗全部載入完成(包含所有DOM資源)，才會執行
+      // let getEl = document.getElementById('demo');
+      // // console.log(getEl,typeof getEl);
+      // console.log(getEl.innerHTML);
+      // console.log(getEl.textContent);
+      // getEl.innerHTML = `
+      // <li>apple</li>
+      // <li>banna</li>
+      // `;
+      // getEl.textContent = `
+      // <li>cat</li>
+      // <li>dog</li>
+      // `;
+
+      // 主流的操作
+      // document.querySelector();
+      // document.querySelectorAll();
+
+    }
+
+    console.log(getEl);
+
+  </script>
+</head>
+
+<body>
+  <h1 id="Ashlee" title="header">hello world</h1>
+  <img class="myImg" src="https://picsum.photos/300/200/?random=10">
+
+  <ul id="demo">
+    <li class="list">item 02</li>
+    <li class="list">item 01</li>
+    <li class="list">item 03</li>
+    <li class="list">item 04</li>
+  </ul>
+  <form>
+    <input type="text">
+    <input type="submit" value="submit">
+  </form>
+
+
+</body>
+
+</html>

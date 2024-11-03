@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>第三堂課作業：透抽獎機解答</title>
+</head>
+
+<body>
+  <script>
+    //exam 產生6個數字(不重複) 1~49
+
+    //-------------[方法一]初學者----------------
+    let lottoPool = [];//樂透大球池
+    const getBall = [];//選中的球
+
+    for (let i = 1; i < 50; i++) {
+      lottoPool.push(`(${i})`);
+    }//最初的大球池(1)~(49)
+
+    const rand = (min, max) => {//隨機的整數選擇機器
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    //共6抽
+    for (let i = 1; i < 7; i++) {
+      const findIdx = rand(0, lottoPool.length - 1);//決定序號，序號換成球
+      const findBall = lottoPool[findIdx];//找到球號
+
+      getBall.push(findBall);//存入選種區
+
+      //清除球池的指定球，利用filter,不要的球回傳false
+      //checkBall為檢查每次的球號，findBall為指定球號
+      lottoPool = lottoPool.filter(function (checkBall) {
+        return checkBall !== findBall;
+      });
+    }
+
+    console.log(getBall.sort());//將抽出的數字由小至大排列
+
+    //-------------[方法二]進階寫法----------------XXXXXXX沒抄完XXXXXXX
+    let luckyPool = [];
+    let lottoMachine = new Array(49); //長度49，但沒有數字的陣列
+    for (let i = 0; i < lottoMachine.length; i++)
+      lottoMachine[i] = String(i + 1).padStart(2, '0'); //填入1~49的數字（不重複;)
+
+    for (let i = 0; i < 6; i++) {
+      const findIdx = rand(0, lottoMachine.length - 1);//決定序號，序號換成球
+
+
+
+      //[解方一]
+      luckyPool.push(lottoMachine.splice(findIdx, 1)[0]);
+      //[解方二]XXXXXXX沒抄完XXXXXXX
+
+
+    }
+
+    console.log(luckyPool.sort());
+
+
+
+
+  </script>
+</body>
+
+</html>
