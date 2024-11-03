@@ -4,22 +4,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>常用的函式</title>
 </head>
 
 <body>
   <script>
+    //.length用於查詢長度
     const str = 'hello';
     console.log(str.length);
+
     const ary = ['A', 'A', 'A', 'A'];
     console.log(ary.length);
-
-    console.clear();
 
     const strNum = '100';
     const realNum = 100;
 
-    console.log(strNum + 3 + realNum); //1003100
+    console.log(strNum + 3 + realNum); //1003100，「字串相連」而非數學的相加
     console.log(strNum + (3 + realNum)); //100103
 
     console.log(Number(strNum));//將strNum轉為真正的number 100

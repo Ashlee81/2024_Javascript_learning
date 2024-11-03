@@ -10,7 +10,7 @@
 <body>
   <script>
     //物件object，專拿來存放資料，陣列拿來計算整理用。
-    const stdA = {
+    let stdA = {
       name: 'loki',
       age: 18,
       gender: 'male',
@@ -18,30 +18,39 @@
       say: () => console.log('hello~')
     };
 
+    //-----------解構物件stdA[方法一]--------------
+    // //解構物件[步驟一]：將等號右邊的stdA，拆解成等號左邊const的5個變數
     // const { name, age, gender, alive, say } = stdA;
+    // //解構物件[步驟二]：再將五個變數重新組合成物件，並指定為stdB
     // const stdB = { name, age, gender, alive, say };
 
+    //-----------解構物件stdA[方法二]--------------
     // const stdB = { ...stdA };//解構stdA，再指定給stdB
+
+
     // stdB.name = 'jack';
     // stdB.age = 25;
-    // stdA = { ...stdB };
 
-    //重新指定stdA裡面的某些值，後面重複的值會蓋掉前面的值
+    // stdA = { ...stdB };//將stdB的值解構後，指定給stdA
+
+    //-----------------------------------------------
+    //重新指定stdA裡的某些值，如果值有重複，後面則會蓋掉前面的資料(運作與CSS相同)
+    //---------------[方法一]------------------
     // stdA={
     //   ...stdA,
     //   name:'jack'
     //   alive: false
     // }
-
+    //---------------[方法二]------------------
     const mdy = {
       name: 'jack',
       alive: false
-    }
+    };
 
     stdA = {
       ...stdA,
       ...mdy
-    }
+    };
 
 
 
