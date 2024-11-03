@@ -9,7 +9,32 @@
 
 <body>
   <script>
-    //須重聽
+
+    function showMe(val, idx) {
+      console.log(`value=>${val},index=>${idx}`);
+      // console.log(`index=>${idx}`);
+    }
+    aa = showMe;
+    bb = function (val, idx) {//匿名函式
+      console.log(`index=>${idx}, value=>${val}`);
+    }
+    cc = (val, idx) => {//箭頭函式，匿名函式的簡寫版本
+      console.log(`index=>${idx}, value=>${val}`);
+    }
+
+    // cc = (v) => {
+    //   console.log(v);
+    // }
+    //↓↓↓可以省略成↓↓↓
+    cc = (v) => console.log(v);
+
+    // cc=(v)=>{
+    // return v * 3;  
+    // }
+    //↓↓↓可以省略成↓↓↓
+    cc = (v) => v * 3;//箭頭函式自帶return，所以return可以省略不寫
+    total = cc = () => 3 * 9;
+
   </script>
 
 </body>

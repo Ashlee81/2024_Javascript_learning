@@ -4,54 +4,69 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>陣列的function</title>
+  <title>陣列中的forEach(陣列專用遍歷方法)</title>
 </head>
 
 <body>
   <script>
 
-    const ary = [];
+    let ary = [];
+
     for (let i = 0; i < 5; i++) {
       ary.push(`A${i * 3}`);
+    }
+    //得出：ary = ['A0','A3','A6','A9','A12']
 
+    ///////////////////////////
+    // for (idx = 0; idx < ary.length; idx++){
+    //   console.log(ary[idx]);
+    // }
+
+    //----------Q:如何得出陣列中的每個值，並印出來?(稱為遍歷)-----------------
+    //遍歷：是逐一查看資料結構中每個元素的過程。
+    //forEach：專用於陣列上的遍歷方式。他會提供每個陣列車廂的value與index
+    //(第一個回傳的值一定是value，第二個回傳的值才會是index)
+
+    //[古早的寫法]
+    for (let idx = 0; idx < ary.length; idx++) {
+      console.log(ary[idx]);
     }
 
-    ///////////////這部分沒有很熟悉 需要複習
-
-    // foreach method1
-
-    function showMe(value, idx) {
-      console.log(`index=>${idx}, value=>${value}`);
+    // [forEach 寫法一]
+    function showMe(val, idx) {
+      console.log(`value=>${val},index=>${idx}`);
       // console.log(`index=>${idx}`);
     }
-    ary.forEach(showMe);
+    ary.forEach(showMe);//foreach()的括弧中，必須填入一個fn，他會提供ary裡的值給你的fn
 
 
-    // foreach method2
-    ary.forEach(function (val, idx) {//省略宣告fn 直接匿名 一次性使用
-      console.log(`index=>${idx}, value=>${value}`)
+    // [forEach 寫法二]
+    ary.forEach(function (val, idx) {//省略宣告fn，直接匿名，一次性使用
+      console.log(`index=>${idx}, value=>${val}`)
     });
 
+    // [forEach 寫法三，使用箭頭函式=寫法二的簡寫]
+    ary.forEach = (val, idx) => console.log(`index=>${idx}, value=>${val}`);
 
-    // foreach method3
-    ary.forEach(val, idx) => console.log(`index=>${idx}, value=>${value}`);
-
-    console.clear();
+    // console.clear();
 
     for (const item of ary) { //遍歷物件 循環提出指定物
       console.log(item);
     }
 
-    console.clear();
+    // console.clear();
 
-    //filter，保留的return true,不要的return false
-    //對陣列移除指定元素，可以用filter弄出新陣列，再重新指定給自己
-    ary = ary.filter((val) => val !== 'A9');
+    //.filter()，括弧中填入測試用的fn，fn會依據條件篩選陣列中的「每個元素」
+    //要保留的return true,不要的return false，並回傳符合條件元素形成新的陣列。
+    ary = ary.filter((val) => val !== 'A9');//印出A0、A3、A6、A12
 
-    console.clear();
+    // console.clear();
 
-    //map映射，抽取每個元素特定處理，再return放回原位置
-    lokitest = ary.map((val) => val + '~~');
+    //.map映射，抽取每個元素特定處理，再return放回原位置
+    lokiTest = ary.map((val) => val + '~~');
+
+    //.includes()(括弧內填入要查詢的值)，檢查陣列中是否有符合條件的元素，有就回傳true，沒有則回傳false
+    //.find()與filter()相似，但「只回傳符合條件的"第一個"元素」
 
 
 

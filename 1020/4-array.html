@@ -9,65 +9,66 @@
 
 <body>
   <script>
-    //變數命名方式：參考'駝峰式命名'，要可以讓人看懂!!!
-    let userName = 'Loki'; //val of str，一個值 
-    let userAge = 12; //val of num，一個值
+    //變數命名方式：參考'駝峰式命名'，重點要能讓人"看懂且理解"!!
+    let userName = 'Loki'; //value of str，一個值 
+    let userAge = 12; //value of num，一個值
 
-    let myAryAA = new Array(); //正式宣告，透過內建建構式(產生一個大型物件，裡面包含一些原生的prototype)來完成，一般人偷懶不會用這個
+    let myAryAA = new Array(); //正式宣告，透過內建建構式(產生一個大型物件，裡面包含一些可用的原生鍊prototype)來完成，一般人偷懶不會用這個
     let myAryAB = []; //空陣列的語法糖果，暴力指定變數
     let myAryAC = new Array(1, 2, 'A', true);
 
-
     let myAryB = ['A', true, 3]; //value of array,可以指定n個值，每個值有自己的index值(索引,可看成火車的第0,1,2,3...節車廂)
 
-    //===============================
-    //myAryB = ['B', true, 3];
-    //對應index值 [0 ,  1   , 2];
-    //**index值的起始號碼為'0'
+    //  myAryB = ['B', true, 3];
+    //對應index值 [ 0 ,  1  , 2]; ==> index值的起始號碼為'0'
 
-    //myAryB[0]=100，透過指定陣列的'索引值'，可以改變陣列的其中一個值
+    //myAryB[0]=100，透過「指定陣列的索引值」，可以改變對應位置的值
 
-    //根據push pop shift unshift來操作陣列增減長度與內容
-    //↑工作上不太這樣用，因為會有記憶體汙染的問題↑
+    //根據push pop shift unshift來操作陣列，增減長度與內容
+    //將值「塞進」陣列中(unshift / push)，可以一次一個以上。ex:myAryB.push('A',21)
+    //將值「拉出」陣列中(shift / pop)，一次只能一個。ex:myAryB.shift();
+    //↑↑↑↑ 工作上不太這樣用，因為會有記憶體汙染的問題 ↑↑↑↑
 
     let aryInit = [1, 2, 3]; //預設值
     let errCloneAry = aryInit; //預設ary，因為指定，所以兩者存取的記憶體位置完全一樣，這叫記憶體汙染
 
-    let realCloneAry = [...aryInit];//ES6解構與重構，將陣列解開，重新組合陣列並指定給b
+    let realCloneAry = [...aryInit];//「ES6解構與重構」，將陣列解開，重新組合成新的陣列並指定給b，此作法不會記憶體汙染
 
     let a = [1, 2, 3];//被複製的固定陣列
     let b = [...a];//重構出一個乾淨的陣列，指定給b
     b.push('A');
     console.log(b);//b與a式不同的陣列，他們的記憶體位置不同
 
-    let c = [...a, 'C'];
+    let c = [...a, 'C'];//==>重構時，再多塞一個值進去
     let d = [...a, 'hello', ...b];
 
     console.log(d);
     console.clear();
 
-    // a.push('C'); 老師工作上不會用這個寫法
-    a = ['A', ...a, 'C'];
+    a.push('C'); //老師工作上不會用這個寫法
+    a = ['A', ...a, 'C'];//寧願再重新指定記憶體，避免互相記憶體汙染
 
-    //////////////////////////////////////
-
+    ////////////////////////////////////////////
     function hello() {
       console.log('hello');
     }
 
     let minAry = ['A', 'B', 'C'];
 
-    //bigAry=[hello,minAry];  
+    // bigAry = [hello, minAry]; //巢狀array,二(N)維陣列
     let bigAry = [
       ['A', 'B', 'C'],
-      hello,
-      minAry
-    ];//巢狀array,二維陣列
+      [10, 20, 30]
+    ]; //巢狀array,二(N)維陣列
 
-    //let ary
+    ////////////////////////////////////////////
 
-    const ary2=[1,2,3]; //保護變數有無重新指定(記憶體改變)
-    ary2.push('A');
+    let ary1 = [1, 2, 3];
+    ary1 = [...ary1, 4, 5, 6];
+
+    const ary2 = [1, 2, 3]; //保護變數有無重新指定(記憶體改變)
+    //ary2 = 'A'; //會報錯，常數不能被重新指定為新的值
+    ary2.push('A');//被指定為常數的陣列可以使用push pop shift unshift來操作，不會被報錯
 
 
 

@@ -34,28 +34,29 @@
 
     const result = resay();
 
+    console.clear();
+
+    ////////////////////////////////////
+
     function parrot(str) {
+      //如果把變數當布林值去思考，只要填入任何東西都是true
+      //反之：0、null、undefined、空字串，都是false
 
-      //寫法2
-      //如果把變數用布林值去思考，只要填入任何東西都是true
-      //反之0 null undefined 空字串都是false
-      //布林值前面增加!有相反的意思，例如：!flase會變成true
-
-      // if (!str) {
-      //   console.log('....parrot dont say anything')
-      //   return;
-      // }
+      if (!str) { //布林值前面增加「!」(=>可讀成"Nope")有相反的意思，例如：!flase === true
+        console.log('....鸚鵡看著你，不說話')
+        return;
+      }
 
       let j = 4;
       while (j > 0) {
         console.log('阿~~~~阿~~~~');
-        if (str === 'mute') return 'done';
+        if (str === 'mute') return;
         console.log(`${str}~~~~~~~~~`);
         j--;
       }
     }
 
-    parrot('mute');
+    parrot();
 
   </script>
 
