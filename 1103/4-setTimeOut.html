@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>setTimeOut</title>
+</head>
+
+<body>
+  <script>
+    // setTimeout(todo,time);
+
+    const timeTag1 = setTimeout(function () {
+      console.log('Bom 1!!!!!!');
+    }, 8000);//設定8秒後出現
+
+    console.log('Done.');
+    clearTimeout(timeTag1);//清除setTimeout定時器
+    //--------------------------------------------------
+    function readyBom() {
+      setTimeout(() => {
+        console.log('Combo Bom!!!!!!');
+        readyBom();
+      }, 1000);
+    }
+  </script>
+</body>
+
+</html>
