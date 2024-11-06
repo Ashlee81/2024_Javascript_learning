@@ -10,14 +10,14 @@
 <body>
   <script>
     console.log(Math.round(3.4));//四捨五入
-    console.log(Math.ceil(3.4));//無條件進位
+    console.log(Math.ceil(3.4));//無條件進位(補充：ceil-->天花板的意思)
     console.log(Math.floor(3.9));//無條件捨去
 
     console.clear();
 
-    console.log(Math.random());//提供一個浮點數，介於0(包含)~1(不包含)之間的亂數
+    console.log(Math.random());//產生一個介於0(包含)~1(不包含)之間的隨機浮點數，
 
-    // console.clear();
+    console.clear();
 
     //ex 0~10隨機整數，產生10組
     for (let i = 0; i < 10; i++) {
@@ -26,7 +26,7 @@
       // num=Math.floor(num);//8
       // console.log(num);
 
-      console.log(Math.floor(Math.random() * 10));
+      console.log(Math.floor(Math.random() * 10));//上面四行的簡寫版本
     }
     console.clear();
 
@@ -73,16 +73,14 @@
       arr1.push(rand(45, 80));
     }
     //方法2
-    const arr2 = new Array(10);
-    for (let i = 0; ;)//沒寫完
+    // const arr2 = new Array(10);
+    // for (let i = 0; ;)//沒寫完
 
 
 
 
 
     //回家作業： 產生6個數字 1~49，並且不重複
-    
-
 
 
   </script>

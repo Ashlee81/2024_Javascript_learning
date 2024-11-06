@@ -22,20 +22,21 @@
     console.log(strNum + 3 + realNum); //1003100，「字串相連」而非數學的相加
     console.log(strNum + (3 + realNum)); //100103
 
-    console.log(Number(strNum));//將strNum轉為真正的number 100
-    console.log(+strNum);//將strNum轉為真正的number 100
+    //將字串(string)轉換成數字(realnumber)
+    console.log(Number(strNum));//[方法一]將strNum轉為真正的number
+    console.log(+strNum);//[方法二]將strNum轉為真正的number
 
+    //將數字(realnumber)指定為字串(string)
     console.log(typeof String(realNum));//將number 100指定為string 100
     console.log(typeof realNum.toString());//將number 100指定為string 100
 
+    //防呆作業：如果是字串，修正為數字並繼續
 
-    let input = 300;
-    if (typeof input === 'string') input = +input;//防呆作業：如果是字串，修正為數字並繼續
+    let input = '500';
+    // let input = 300;
+    if (typeof input === 'string') input = +input;//'string'是typeof判斷資料型別的固定寫法
     console.log(100 + input + 100);
 
-    // let input = '500';
-    // if (typeof (input) === 'string') input = +input;
-    // console.log(100 + input + 100);
 
   </script>
 
