@@ -41,31 +41,38 @@
     console.log(Num15);
 
 
-    //ex 45~80的隨機整數，產生一個數就好
+    //ex ------- [練習題]45~80的隨機整數，產生一個數就好---------
     //ex (0+45)~(35+45)的隨機整數，產生一個數就好
     //ex 0~35的隨機整數，之後再加45，產生一個數就好
 
+    //[方法一]一步步推導
     let Num45to80 = Math.random();
     Num45to80 *= 36;
     Num45to80 += 45;
     Num45to80 = Math.floor(Num45to80);
     console.log(Num45to80);
 
-    // let Num45to80 = Math.floor(Math.random() * 16);//還沒寫完
+     //[方法二]更精簡
+    let num45to80 = (Math.floor(Math.random()*36))+45;
+    console.log(num45to80);
 
-    //XXXXXXXXXXXXXX這部分邏輯不太懂XXXXXXXXXXXXXXXXXXXXXXXX
-    //還沒寫完
-    // const rand=(min,max)=>{
-    //   let Num45to80=Math.floor(Math.random()*(max-))
+    //[方法一]
+    // function rand(min, max) {
+    //   return;
     // }
+    //[方法二]
+    // const rand = function (min, max) {
+    //   return;
+    // }
+    //[方法三]箭頭函示（老師建議要熟悉這個寫法）
+    const rand = (min, max) => {
+      return;
+    }
 
 
     //發明一個fn名字為rand(min,max)=>可指定參數mix~max之間的隨機整數
     //然後塞入一個陣列10，裡面都是rand()產出的隨機整數
 
-    // function rand(min, max) {
-    //   return;
-    // }
 
     //方法一
     const arr1 = [];
