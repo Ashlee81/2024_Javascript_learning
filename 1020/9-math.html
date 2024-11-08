@@ -67,31 +67,36 @@
     // }
     //[寫法三]箭頭函示（老師建議要熟悉這個寫法）
     const rand = (min, max) => {
-    //理想狀態下，應該防呆一下max跟min要有數字，max要比min大，否則不要繼續
+      //理想狀態下，應該防呆一下max跟min要有數字，max要比min大，否則不要繼續
       let rand45to80 = Math.floor(Math.random() * (max - min + 1)) + min;
       return rand45to80;
     }
-    //-------[練習題2-2]然後塞入一個陣列10，裡面都是rand()產出的隨機整數---------
-
-    const arr = [];
-    for (let i = 0; i < 10; i++) {
-      arr.push(rand(45, 80));
-    }
-    console.log(arr)
-
-
-    // [簡寫]const rand = (min, max) => {
+    // [簡寫]
+    //const rand = (min, max) => {
     //   return Math.floor(Math.random() * (max - min + 1)) + min;
     // }
 
-    // [更簡寫]const rand = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+    // [更簡寫]
+    //const rand = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
+    //----------[練習題2-2]然後塞入一個陣列10，裡面都是rand()產出的隨機整數---------
+    //[寫法一]
+    const arr1 = [];
+    for (let i = 0; i < 10; i++) {
+      arr1.push(rand(45, 80));
+    }
+    console.log(arr1);
 
+    //[寫法二]
+    const arr2 = new Array(10);
+    for (let i = 0; i < arr2.length; i++) {
+      arr2[i] = rand(45, 80);
+    }
+    console.log(arr2);
 
-
-
-
-
+    //[寫法三](此方法不懂沒關係)
+    const arr3 = Array.apply(null, new Array(10)).map((i) => rand(45, 80));
+    console.log(arr3);
 
     //回家作業： 產生6個數字 1~49，並且不重複
 

@@ -4,12 +4,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>第三堂課作業解答：透抽獎機</title>
+  <title>第三堂課作業解答：樂透抽獎機</title>
 </head>
 
 <body>
   <script>
-    //exam 產生6個數字(不重複) 1~49
+    //回家作業： 產生6個數字 1~49，並且不重複
 
     //-------------[方法一]初學者----------------
     let lottoPool = [];//樂透大球池
@@ -20,7 +20,7 @@
     }//最初的大球池(1)~(49)
 
     const rand = (min, max) => {//隨機的整數選擇機器
-      return Math.floor(Math.random() * (max - min + 1)) + min;
+      return min + Math.floor(Math.random() * (max - min + 1));
     }
 
     //共6抽
