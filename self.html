@@ -43,8 +43,24 @@
 
 
         /////////////////////////
-        let num45to80 = (Math.floor(Math.random()*36))+45;
+        let num45to80 = (Math.floor(Math.random() * 36)) + 45;
         console.log(num45to80);
+
+        /////////////////////時間換算自我練習135秒換算為分，秒
+        // let ss, mm = 0;
+        // ss = 135 % 60;
+        // mm = Math.floor(135 / 60);
+        // console.log(`${mm}分${ss}秒`);
+        /////////////////////時間換算自我練習4215秒換算為時，分，秒
+        let sec = 4215;
+        let ss, mm, hh = 0;
+        ss = sec % 60;
+        mm = (Math.floor(sec / 60)) % 60;
+        hh = Math.floor((Math.floor(sec / 60)) / 60);
+
+        console.log(`${hh}時${mm}分${ss}秒`);
+
+
 
     </script>
 

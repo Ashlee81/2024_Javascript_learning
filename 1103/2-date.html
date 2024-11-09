@@ -11,8 +11,8 @@
   <script>
     const time = Date(); //字串
     const now = new Date();//時間物件
-    const lastTime1 = new Date(2024, 11, 31, 23, 59, 59, 999);//[注意]月份欄位為索引值，所以要11+1=12月
-    const lastTime2 = new Date('2024-12-31T23:59:59:999');
+    // const lastTime1 = new Date(2024, 11, 31, 23, 59, 59, 999);//[注意]月份欄位為索引值，所以要11+1=12月
+    const lastTime = new Date('2024-12-31T23:59:59');
 
     const monthStr = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     const dayStr = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六']
@@ -30,10 +30,10 @@
 
     //計算跨年倒數日時分秒，利用JS兩筆時間物件的getTime 相差毫秒，推算日月時分秒
     //--------------------------------------------------------------
-    const lastTime = new Date(now.getFullYear() + 1, 0);
-    let diffTime = lastTime1.getTime() - now.getTime();//單位毫秒
+    // const lastTime = new Date(now.getFullYear() + 1, 0);
+    let diffTime = lastTime.getTime() - now.getTime();//單位毫秒
     diffTime = Math.floor(diffTime / 1000);
-    // console.log(diffTime+'秒');
+    console.log(diffTime + '秒');
 
     //[題目一]
     // let sec = 135;
@@ -50,7 +50,6 @@
     //[題目二]
     // let sec = 4215;//換算成時,分,秒
     // let hh, mm, ss = 0;
-    // // let dd = 0, hh = 0, mm = 0, ss = 15;
 
     // ss = (sec % 60);
     // mm = Math.floor(sec / 60)%60;
@@ -71,14 +70,15 @@
     console.log(`距離${now.getFullYear() + 1}年，還剩${dd}天${hh}時${mm}分${ss}秒`);
 
     //--------------------------------------------------------------
-    const nowTime = new Date();
+    const nowTime = new Date();//取得現在的時間
 
     console.log(nowTime);
-    nowTime.setDate(nowTime.getDate()+100);//現在的時間+100天
+    nowTime.setDate(nowTime.getDate() + 100);//現在的時間+100天
     console.log(nowTime);
-    nowTime.setDate(nowTime.getDate()-200);//現在的時間+100天
+    nowTime.setDate(nowTime.getDate() - 200);//現在的時間-200天
+    //[註]如果直接在.setDate()填寫單一數字，會變成指定日期而非增加或減少天數
+    //例：假設nowTime為2024/1/1，nowTime.setDate(20)會變成2024/1/20
     console.log(nowTime);
-
 
 
   </script>
