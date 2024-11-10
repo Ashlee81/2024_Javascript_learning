@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>事件</title>
+  <style>
+    .active {
+      color: magenta;
+      font-size: 3rem;
+      background: black;
+    }
+
+    .demo {
+      background: yellow;
+    }
+  </style>
+</head>
+
+<body>
+  <input type="button" value="onclick demo" id="demo" onclick="onlyDemoElement('這是click簡單操作')">
+  <hr>
+  <input type="button" value="onclick" id="loki" onclick="whatIs(this)">
+  <input type="button" value="onmousedown" onmousedown="whatIs(this)">
+  <input type="button" value="onmouseup" onmouseup="whatIs(this)">
+  <!-- hover -->
+  <input type="button" value="onmouseover" onmouseover="whatIs(this)">
+  <!-- 滑鼠移開 -->
+  <input type="button" value="onmouseout" onmouseout="whatIs(this)">
+
+  <input type="text" value="onfocus" onfocus="whatIs(this)">
+  <input type="text" value="onchange" onchange="whatIs(this)">
+  <input type="text" value="onblur" onblur="whatIs(this)">
+  <!-- 這邊的this指標籤自己 -->
+  <select onchange="whatIs(this)">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+  </select>
+  <hr>
+  <input type="password" value="" onchange="chkPWD(this)">
+  <span id="pwd-info"></span>
+  <hr>
+  <div id="fakeBtn">123</div>
+  <hr>
+  <div>你按下的鍵盤(<span id="codeName"></span>)號碼為：<span id="keycode"></span></div>
+
+  <script>
+    //---------------------滑鼠事件mouse event------------------------
+    function onlyDemoElement(msg) {
+      // console.log(msg);
+      const node = document.getElementById('demo');
+      // console.log(node.value);
+      // console.log(node.style.color);
+      node.value = 'hello world';
+      //---------------------增加css屬性的作法---------------------------
+      //[方法一]
+      // node.style.color = 'green';
+      // node.style.fontSize = '2rem';//[註]JS裡沒有dash符號，如要改動CSS的屬性，屬性名稱需換成駝峰式命名法
+
+      //[方法二]方法一的簡寫
+      // node.style = 'color:green;font-size:2rem';
+      //[方法二]折行的寫法(注意使用的符號不同)
+      // node.style = `
+      // color:green;
+      // font-size:2rem;
+      // `;
+      //[方法三]老師偏好的作法
+      // node.className='demo active';
+      node.classList.add('active');//node.classList.add('active','demo');=>加入複數CSS的寫法
+      // node.classList.removw('demo');
+
+    }
+
+    const whatIs = function (node) {//透過參數,把物件丟進來，在html的element上this指向自己
+      // const node = myLoki;//document.getElementById('loki')
+
+      //[方法一]
+      // const check = node.classList.contains('active');
+      // if (check) { //已存在active
+      //   node.classList.remove('active');
+      // } else { //不存在，增加active並更換value
+      //   node.value = 'Hello loki';
+      //   node.classList.add('active');
+      // }
+
+      //[方法二]三元寫法
+      // if (!node.classList.contains('active')) node.value = 'Hello loki';
+      // node.classList.contains('active') ? node.classList.remove('active') : node.classList.add('active');
+
+      //[方法三]
+      // node.value = 'Hello loki';
+      node.classList.toggle('active');
+
+      // console.log(this);//JS的this指向JS自己，也就是window本身
+    }
+
+    const chkPWD = function (htmlEl) {
+      // if (htmlEl.value.length < 8) {
+      //   document.querySelector('#pwd-info').innerHTML = '密碼長度至少要8位元';
+      // } else {
+      //   document.querySelector('#pwd-info').innerHTML = '';
+      // }
+      // 三元寫法 - 1
+      //   (htmlEl.value.length < 8) ?
+      //   document.querySelector('#pwd-info').innerHTML = '密碼長度至少要8位元';
+      //   :
+      // document.querySelector('#pwd-info').innerHTML = '';
+      // 三元寫法 - 2(更簡寫)
+      document.querySelector('#pwd-info').innerHTML = (htmlEl.value.length < 8) ? '密碼長度至少要8位元' : '';
+    };
+
+    const fakeBtnTodo = function () {
+      const btn = document.querySelector('#fakeBtn');
+      btn.innerHTML = '假按鈕';
+      btn.style = `
+      color: white;
+      background: lightblue;
+      cursor: pointer;
+      display: inline-block;
+      padding: 2px 10px;
+      `;
+      btn.onclick = function () {
+        btn.classList.toggle('active');
+      }
+
+      // console.log(btn);
+      //btn.onclick = whatIs(this);//錯誤，宣告fn，目前沒有this的定義，所以this指向整個window
+      // btn.onclick = whatIs(btn);//把btn丟進去，去跑一樣的事情,錯誤
+
+      // btn.onclick = () => {//錯誤，箭頭函式無法協助把物件this丟進去，所以this指向整個window
+      //   console.log(this);
+      // }
+
+      btn.onclick = function () {//
+        // whatIs(btn);//此寫法也可以
+        console.log(this);
+        whatIs(this);//btn是物件，inclick的this指向btn
+      }
+
+    }
+    fakeBtnTodo();
+
+    //鎖右鍵(沒抄到)
+
+
+    //---------------------鍵盤事件keyboard event------------------------
+    document.onkeydown = function (event) {//如果想鎖多個鍵盤事件,可以用陣列寫
+      // console.log(event);
+      if (event.code == 8) {//如果是F12,不要取消
+        return;
+      }
+      event.preventDefault();//取消按鍵預設的行為
+      document.querySelector('#codeName').innerHTML = event.code;
+      document.querySelector('#keycode').innerHTML = event.keyCode;
+
+    }
+    //---------------------視窗事件window event------------------------
+    window.onresize = function (e) {
+      // console.log(e);
+      // console.log(window.innerWidth);
+      console.log(document.querySelector('#loki').value);
+    }
+  </script>
+
+</body>
+
+</html>
