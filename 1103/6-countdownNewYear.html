@@ -4,48 +4,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>新年倒數計時器(未寫完)</title>
+  <title>新年倒數計時器</title>
 </head>
 
 <body>
   <script>
-    const now = new Date();//時間物件
-    const lastTime1 = new Date(2024, 11, 31, 23, 59, 59, 999);//[注意]月份欄位為索引值，所以要11+1=12月
-    const lastTime2 = new Date('2024-12-31T23:59:59:999');
+    setInterval(() => {
+      const now = new Date();//時間物件
+      const diffTime = Math.floor((new Date(now.getFullYear() + 1, 0).getTime() - now.getTime()) / 1000);
 
-    const monthStr = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-    const dayStr = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六']
+      const ss = diffTime % 60;
+      const mm = Math.floor(diffTime / 60) % 60;
+      const hh = Math.floor(diffTime / 60 / 60) % 24;
+      const dd = Math.floor(diffTime / 60 / 60 / 24);
 
-    let ans;
-    ans = now.getFullYear();//西元年
-    ans = monthStr[now.getMonth()];//月份0~11，利用陣列來規劃各語系的月份文字
-    ans = now.getDate();//日期
-    ans = now.getHours();//小時
-    ans = now.getMinutes();//分鐘
-    ans = now.getSeconds();//秒
-    ans = now.getMilliseconds();//毫秒
-    ans = dayStr[now.getDay()];//星期幾
-    ans = now.getTime();//時間戳記，單位是毫秒，將所有的時間換算成總毫秒數
-
-    //計算跨年倒數日時分秒，利用JS兩筆時間物件的getTime 相差毫秒，推算日月時分秒
-    //--------------------------------------------------------------
-    const lastTime = new Date(now.getFullYear() + 1, 0);
-    let diffTime = lastTime1.getTime() - now.getTime();//單位毫秒
-    diffTime = Math.floor(diffTime / 1000);
-    
-
-    let sec = diffTime;
-    let dd = 0, hh = 0, mm = 0, ss = 0;
-
-    ss = (sec % 60);
-    mm = Math.floor(sec / 60) % 60;
-    // hh = Math.floor(Math.floor(sec / 60) / 60) % 24;
-    // dd = Math.floor((Math.floor(sec / 60) / 60) / 24);
-    hh = Math.floor(sec / 60 / 60) % 24;//上面的簡寫版
-    dd = Math.floor(sec / 60 / 60 / 24);
-
-    console.log(`距離${now.getFullYear() + 1}年，還剩${dd}天${hh}時${mm}分${ss}秒`);
-
+      console.clear();
+      console.log(`距離${now.getFullYear() + 1}年，還剩${dd}天${hh}時${mm}分${ss}秒`);
+    }, 1000);
 
 
   </script>

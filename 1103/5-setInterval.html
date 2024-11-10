@@ -10,6 +10,7 @@
 <body>
   <script>
     //setInterval(todo,replyTime);
+    //與setTimeout不同，setInterval可以重複執行
     let i = 0;
     const getTag = setInterval(() => {
       console.log('Bom 1!!!!!!');
@@ -17,7 +18,7 @@
 
       if (i === 5) {
         clearInterval(getTag);
-        open('www.google.com');
+        open('http://www.google.com',_blank);
       }
     }, 1000);
 

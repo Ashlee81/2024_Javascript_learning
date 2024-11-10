@@ -8,13 +8,17 @@
 </head>
 
 <body>
-  <script>
-    //跳彈窗
-    alert('Hello World');//會暫停瀏覽視窗的執行，直到使用者點擊確定，目前很少用此功能
-    //
-    var confirm = confirm('請選擇確認或取消');//提問，回傳布林值
+  <h1>hello world</h1>
 
-    const ans = prompt('問題', '你好嗎？')//提問取得字串並回傳
+  <script>
+    alert('Hello World');//警告彈窗。會暫停瀏覽視窗的執行，直到使用者點擊確定，目前很少用此功能
+    //目前彈窗多使用模板做。ex:sweet alert
+    //
+    // var confirm = confirm('請選擇確認或取消');//帶確認與取消的彈窗，回傳布林值(true/false)
+    alert(`抱歉，網站正在搶修中`);
+    location.href = "404.html";
+
+    var ans = prompt('問題', '你好嗎？');//提問，取得字串並回傳
 
   </script>
 </body>

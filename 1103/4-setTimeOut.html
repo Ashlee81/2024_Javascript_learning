@@ -9,18 +9,19 @@
 
 <body>
   <script>
-    // setTimeout(todo,time);
+    //setTimeout(todo,延遲的時間(單位：毫秒));
+    //與setInterval不同，只能執行一次
 
     const timeTag1 = setTimeout(function () {
       console.log('Bom 1!!!!!!');
-    }, 8000);//設定8秒後出現
+    }, 3000);//設定3秒後出現
 
     console.log('Done.');
     clearTimeout(timeTag1);//清除setTimeout定時器
     //--------------------------------------------------
     function readyBom() {
       setTimeout(() => {
-        console.log('Combo Bom!!!!!!');
+        console.log('Combo~~~~~~~Bom!!!!!!');
         readyBom();
       }, 1000);
     }
