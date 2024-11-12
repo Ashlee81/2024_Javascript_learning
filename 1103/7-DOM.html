@@ -5,28 +5,28 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-
   <script>
     let getEl = null;//提升為全域變數
-    onload = function () {
-      //當視窗全部載入完成(包含所有DOM資源)，才會執行
-      // let getEl = document.getElementById('demo');
-      // // console.log(getEl,typeof getEl);
-      // console.log(getEl.innerHTML);
-      // console.log(getEl.textContent);
-      // getEl.innerHTML = `
-      // <li>apple</li>
-      // <li>banna</li>
-      // `;
+    
+    window.onload = function () {//當視窗全部載入完成(包含所有DOM資源)，才會執行這個fn
+      let getEl = document.getElementById('demo');
+      console.log(getEl, typeof getEl);
+      console.log(getEl.innerHTML);//讀取「完整的html」,可修改html的內容
+      console.log(getEl.textContent);//只讀取「文字內容」
+      //↓↓↓↓修改html內容的寫法↓↓↓↓
+      //使用``字串模板的符號包裹html或css，內容可以折行
+      getEl.innerHTML = ` 
+      <li>apple</li>
+      <li>banna</li>
+      `;
       // getEl.textContent = `
-      // <li>cat</li>
+      // <li>cat</li> 
       // <li>dog</li>
       // `;
 
-      // 主流的操作
+      // 主流的操作,可以找class、id、tag
       // document.querySelector();
       // document.querySelectorAll();
-
     }
 
     console.log(getEl);
@@ -46,8 +46,6 @@
     <input type="text">
     <input type="submit" value="submit">
   </form>
-
-
 </body>
 
 </html>
