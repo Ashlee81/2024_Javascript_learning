@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>DOM</title>
   <script>
     let getEl = null;//提升為全域變數
     
@@ -13,6 +13,7 @@
       console.log(getEl, typeof getEl);
       console.log(getEl.innerHTML);//讀取「完整的html」,可修改html的內容
       console.log(getEl.textContent);//只讀取「文字內容」
+
       //↓↓↓↓修改html內容的寫法↓↓↓↓
       //使用``字串模板的符號包裹html或css，內容可以折行
       getEl.innerHTML = ` 
