@@ -60,15 +60,15 @@
       // node.style.color = 'green';
       // node.style.fontSize = '2rem';//[註]JS裡沒有dash符號，如要改動CSS的屬性，屬性名稱需換成駝峰式命名法
 
-      //[方法二]方法一的簡寫
+      //[方法二-1]方法一的簡寫
       // node.style = 'color:green;font-size:2rem';
-      //[方法二]折行的寫法(注意使用的符號不同)
+      //[方法二-2]折行的寫法(注意使用的符號不同)
       // node.style = `
       // color:green;
       // font-size:2rem;
       // `;
       //[方法三]老師偏好的作法
-      // node.className='demo active';
+      // node.className='demo active';//直接暴力改掉classname
       node.classList.add('active');//node.classList.add('active','demo');=>加入複數CSS的寫法
       // node.classList.removw('demo');
 

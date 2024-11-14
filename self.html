@@ -8,6 +8,8 @@
 </head>
 
 <body>
+    <input type="button" value="onclick demo" id="demo" onclick="AAA()">
+    
     <script>
         x = 'Hello';
         y = "world";
@@ -59,6 +61,19 @@
         hh = Math.floor((Math.floor(sec / 60)) / 60);
 
         console.log(`${hh}時${mm}分${ss}秒`);
+
+        ///////////////////////////////
+        const Ash=document.getElementById('demo');
+        function AAA(){
+            Ash.value='I am Ashlee';
+            Ash.style=`
+            color:red;
+            background-color:black;
+            font-size:2rem;
+            border-radius:5px;
+            padding:5px 20px;
+            `;
+        }
 
 
 
