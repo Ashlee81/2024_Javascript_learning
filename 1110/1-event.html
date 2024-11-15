@@ -21,8 +21,11 @@
 <body>
   <input type="button" value="onclick demo" id="demo" onclick="onlyDemoElement('這是click簡單操作')">
   <hr>
+  <!-- 滑鼠按一下並回彈 -->
   <input type="button" value="onclick" id="loki" onclick="whatIs(this)">
+  <!-- 按下滑鼠鍵 -->
   <input type="button" value="onmousedown" onmousedown="whatIs(this)">
+  <!-- 滑鼠鍵回彈 -->
   <input type="button" value="onmouseup" onmouseup="whatIs(this)">
   <!-- hover -->
   <input type="button" value="onmouseover" onmouseover="whatIs(this)">
@@ -32,7 +35,7 @@
   <input type="text" value="onfocus" onfocus="whatIs(this)">
   <input type="text" value="onchange" onchange="whatIs(this)">
   <input type="text" value="onblur" onblur="whatIs(this)">
-  <!-- 這邊的this指標籤自己 -->
+  <!-- HTML中，fn填入參數'this',此this指向標籤自己 -->
   <select onchange="whatIs(this)">
     <option value="1">1</option>
     <option value="2">2</option>
@@ -70,12 +73,12 @@
       //[方法三]老師偏好的作法
       // node.className='demo active';//直接暴力改掉classname
       node.classList.add('active');//node.classList.add('active','demo');=>加入複數CSS的寫法
-      // node.classList.removw('demo');
+      // node.classList.remove('demo');
 
     }
 
-    const whatIs = function (node) {//透過參數,把物件丟進來，在html的element上this指向自己
-      // const node = myLoki;//document.getElementById('loki')
+    const whatIs = function (node) {//透過參數,把物件丟進來，在html的element上this指向自己//????不太懂為何這邊的'node'可以抓到html的element????
+      // const node = myLoki;//document.getElementById('loki')//????不太懂為何這邊的'myloki'可以等同於document.getElementById('loki')????
 
       //[方法一]
       // const check = node.classList.contains('active');
@@ -91,10 +94,10 @@
       // node.classList.contains('active') ? node.classList.remove('active') : node.classList.add('active');
 
       //[方法三]
-      // node.value = 'Hello loki';
-      node.classList.toggle('active');
+      node.value = 'Hello loki';
+      node.classList.toggle('active');//toggle=>切換
 
-      // console.log(this);//JS的this指向JS自己，也就是window本身
+      // console.log(this);//JS的this指向整個window
     }
 
     const chkPWD = function (htmlEl) {
@@ -152,9 +155,9 @@
       if (event.code == 8) {//如果是F12,不要取消
         return;
       }
-      event.preventDefault();//取消按鍵預設的行為
-      document.querySelector('#codeName').innerHTML = event.code;
-      document.querySelector('#keycode').innerHTML = event.keyCode;
+      // event.preventDefault();//取消按鍵預設的行為
+      // document.querySelector('#codeName').innerHTML = event.code;
+      // document.querySelector('#keycode').innerHTML = event.keyCode;
 
     }
     //---------------------視窗事件window event------------------------
