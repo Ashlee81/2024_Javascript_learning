@@ -8,8 +8,7 @@
 </head>
 
 <body>
-  <div id="myBlock"
-    style="width:100px;height:100px;background-color: red; clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);"></div>
+  <div id="myBlock" style="width:100px;height:100px;background-color: red; clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);"></div>
   <hr />
   <input type="button" value="正方形" />
   <input type="button" value="圓形" />
@@ -23,29 +22,27 @@
 
     //---------------------改形狀事件------------------------
 
-    document.querySelectorAll('input[type="button"]').forEach(item => {
+    document.querySelectorAll('input[type=button]').forEach(item => {
       // console.log(item);
-      item.addEventListener('click', () => {
-        trans(item.value);
-      });
+      item.addEventListener('click',function(){trans(this.value);});
     });
 
-    function trans(type) {
-      switch (type) {
-        case "A":
+    function trans(elValue) {
+      switch (elValue) {
+        case "正方形":
           zone.style.clipPath = `polygon(0 0, 100% 0, 100% 100%, 0% 100%)`;
           break;
-        case "B":
+        case "圓形":
           zone.style.clipPath = `circle(50% at 50% 50%)`;
           break;
-        case "C":
+        case "三角形":
           zone.style.clipPath = `polygon(50% 0%, 0% 100%, 100% 100%)`;
           break;
       }
     }
 
     //---------------------改顏色事件------------------------
-    document.querySelectorAll('input[type="button"]').addEventListener('change', function () {color(this.value);});
+    document.querySelector('input[type=text]').addEventListener('change', function () {color(this.value);});
 
     function color(colorCode) {
       zone.style.backgroundColor = colorCode;
