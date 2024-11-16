@@ -17,9 +17,11 @@
     const demo = document.querySelector('#demo');
 
     demo.addEventListener('click', () => {
-      const btn = document.createElement('button');
+      const btn = document.createElement('button');//創造一個按鈕
+      // btn.innerHTML = '按我';
       btn.textContent = '按我';
       btn.style.color = 'red';
+
       const mylink = document.createElement('button');
       mylink.textContent = '連結';
       mylink.style.background = 'black';
@@ -27,9 +29,9 @@
 
       // document.querySelector('body').appendChild(btn);//.appendChild只能插入一個子元素
       // document.body.appendChild(btn);//效果同上
-      // document.body.append(btn, mylink);//.append可插入多個子元素
+      // document.body.append(btn, mylink);//.append在某元素'後面'插入元素，可插入多個
 
-      document.querySelector('.group').prepend(mylink);
+      document.querySelector('.group').prepend(mylink);//.prepend在某元素'前面'插入其他元素
 
       console.log(btn);
       // document.querySelector('h1').remove();//刪除指定dom

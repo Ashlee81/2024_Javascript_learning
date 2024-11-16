@@ -31,11 +31,13 @@
   <input type="button" value="onmouseover" onmouseover="whatIs(this)">
   <!-- 滑鼠移開 -->
   <input type="button" value="onmouseout" onmouseout="whatIs(this)">
-
+  <!-- 正在輸入文字 -->
   <input type="text" value="onfocus" onfocus="whatIs(this)">
+  <!-- 文字輸入框中的值改變 -->
   <input type="text" value="onchange" onchange="whatIs(this)">
+  <!-- 滑鼠點擊文字輸入框以外 -->
   <input type="text" value="onblur" onblur="whatIs(this)">
-  <!-- HTML中，fn填入參數'this',此this指向標籤自己 -->
+  <!-- [memo]HTML中，fn填入參數'this',此this指向標籤自己 -->
   <select onchange="whatIs(this)">
     <option value="1">1</option>
     <option value="2">2</option>
@@ -43,10 +45,9 @@
     <option value="4">4</option>
   </select>
   <hr>
-  <input type="password" value="" onchange="chkPWD(this)">
-  <span id="pwd-info"></span>
+  <input type="password" value="" onchange="chkPWD(this)"><small id="pwd-info"></small>
   <hr>
-  <div id="fakeBtn">123</div>
+  <div id="fakeBtn"></div>
   <hr>
   <div>你按下的鍵盤(<span id="codeName"></span>)號碼為：<span id="keycode"></span></div>
 
@@ -89,12 +90,12 @@
       //   node.classList.add('active');
       // }
 
-      //[方法二]三元寫法
+      //[方法二][結構]三元寫法 - 1(boolean ? true to do : false to do)
       // if (!node.classList.contains('active')) node.value = 'Hello loki';
       // node.classList.contains('active') ? node.classList.remove('active') : node.classList.add('active');
 
       //[方法三]
-      node.value = 'Hello loki';
+      // node.value = 'Hello loki';
       node.classList.toggle('active');//toggle=>切換
 
       // console.log(this);//JS的this指向整個window
@@ -106,16 +107,16 @@
       // } else {
       //   document.querySelector('#pwd-info').innerHTML = '';
       // }
-      // 三元寫法 - 1
-      //   (htmlEl.value.length < 8) ?
-      //   document.querySelector('#pwd-info').innerHTML = '密碼長度至少要8位元';
-      //   :
-      // document.querySelector('#pwd-info').innerHTML = '';
+      // [結構]三元寫法 - 1(boolean ? true to do : false to do)
+      (htmlEl.value.length < 8) ?
+        document.querySelector('#pwd-info').innerHTML = '密碼長度至少要8位元'
+        :
+        document.querySelector('#pwd-info').innerHTML = '';
       // 三元寫法 - 2(更簡寫)
-      document.querySelector('#pwd-info').innerHTML = (htmlEl.value.length < 8) ? '密碼長度至少要8位元' : '';
+      // document.querySelector('#pwd-info').innerHTML = (htmlEl.value.length < 8) ? '密碼長度至少要8位元' : '';
     };
 
-    const fakeBtnTodo = function () {
+    const fakeBtnTodo = function () {//老師偏好HTML與JS分開寫的寫法
       const btn = document.querySelector('#fakeBtn');
       btn.innerHTML = '假按鈕';
       btn.style = `
@@ -125,43 +126,46 @@
       display: inline-block;
       padding: 2px 10px;
       `;
-      btn.onclick = function () {
-        btn.classList.toggle('active');
-      }
+      // btn.onclick = function () {
+      //   btn.classList.toggle('active');
+      // };
 
       // console.log(btn);
-      //btn.onclick = whatIs(this);//錯誤，宣告fn，目前沒有this的定義，所以this指向整個window
-      // btn.onclick = whatIs(btn);//把btn丟進去，去跑一樣的事情,錯誤
+      //btn.onclick = whatIs(this);//[❌錯誤]宣告fn，目前沒有this的定義，所以this指向整個window
+      //btn.onclick = whatIs(btn);//[❌錯誤]等式的右邊會'先執行'，所以還沒點擊前，btn已先觸發class的效果
 
-      // btn.onclick = () => {//錯誤，箭頭函式無法協助把物件this丟進去，所以this指向整個window
+      // btn.onclick = () => {//[❌錯誤]，箭頭函式無法協助把物件this丟進去，所以this指向整個window
       //   console.log(this);
       // }
 
-      btn.onclick = function () {//
+      btn.onclick = function () {//匿名函式可以協助把物件本體(this)丟進去，所以this指向自己
         // whatIs(btn);//此寫法也可以
         console.log(this);
-        whatIs(this);//btn是物件，inclick的this指向btn
+        whatIs(this);//btn是物件，onclick的this指向btn
       }
-
-    }
+    };
     fakeBtnTodo();
 
-    //鎖右鍵(沒抄到)
+    //鎖右鍵
+    document.oncontextmenu = function (event) {
+      console.log(event);
+      event.preventDefault();//取消按鍵預設的行為
+    }
 
 
     //---------------------鍵盤事件keyboard event------------------------
     document.onkeydown = function (event) {//如果想鎖多個鍵盤事件,可以用陣列寫
       // console.log(event);
-      if (event.code == 8) {//如果是F12,不要取消
+      if (event.keyCode == 116) {//如果是F5,取消執行整個fn(因為return讓整個fn中斷)
         return;
       }
-      // event.preventDefault();//取消按鍵預設的行為
-      // document.querySelector('#codeName').innerHTML = event.code;
-      // document.querySelector('#keycode').innerHTML = event.keyCode;
+      event.preventDefault();//取消按鍵預設的行為
+      document.querySelector('#codeName').innerHTML = event.code;
+      document.querySelector('#keycode').innerHTML = event.keyCode;
 
     }
     //---------------------視窗事件window event------------------------
-    window.onresize = function (e) {
+    onresize = function (e) {//拉伸視窗寬度時觸發
       // console.log(e);
       // console.log(window.innerWidth);
       console.log(document.querySelector('#loki').value);

@@ -9,16 +9,13 @@
 
 <body>
   <input type="button" id="ock" value="try me">
-  <input type="button" value="取消 mouseover" onclick="clearListener()">
-  <input type="button" id="canel" value="取消 todo3 from js">
+  <input type="button" value="取消 todo3 from HTML" onclick="clearListener()">
+  <input type="button" id="cancel" value="取消 todo3 from JS ">
   <hr>
-  <input type="password" value="1234"><button>view</button>
+  <input type="password" value="1234"><button>show</button>
 </body>
 
 <script>
-
-
-
   const ock = document.querySelector('#ock');
   // ock.onclick=function(){
   //   console.log('click1');
@@ -27,10 +24,10 @@
   //   console.log('click2');
   // };
 
-  // ock.addEventListener(event,todo fuction);
-  //   ock.addEventListener('click', () => {
-  //     console.log('click1');
-  //   });
+  // [結構]ock.addEventListener(事件, 要執行的fn);
+  ock.addEventListener('click', () => {//這裡的click是for JS，與HTML裡的onclick不會互相影響
+    console.log('click1');
+  });
   //   ock.addEventListener('click', () => {
   //     console.log('click2');
   //   });
@@ -38,8 +35,6 @@
   //     console.log('click3');
   //   });
 
-
-  //這部分沒有聽懂&有寫錯
   function todo1() {
     console.log('click1');
   }
@@ -47,34 +42,36 @@
   const todo3 = function () { console.log('click3'); };
 
   ock.addEventListener('click', todo1);
-  ock.addEventListener('moueseover', todo2);
+  ock.addEventListener('mouseover', todo2);
   ock.addEventListener('click', todo3);
 
   document.addEventListener('contextmenu', (e) => {
     e.preventDefault();
   });
 
+  const removeBtn = document.querySelector('#cancel');
+  removeBtn.addEventListener('click', todo3);
+
   function cleanListener() {
-    ock.removeEventListener('click', todo3);
+    cancel.removeEventListener('click', todo3);
   }
-  const removeBtn = document.querySelector('#canel');
   removeBtn.addEventListener('click', cleanListener);
 
-  //---------------------顯示隱藏的密碼-----------------//這邊有寫錯，找不出原因
+  //---------------------顯示/隱藏密碼-----------------
   const pwd = document.querySelector('input[type=password]');
-  const pwdSwitch = document.querySelector('input[type=button] + button');
+  const pwdSwitch = document.querySelector('input[type=password] + button');
 
-  pwdSwitch.addEventListener('mousedown', () => {
+  pwdSwitch.addEventListener('mousedown', function () {
     pwd.type = 'text';
-    pwdSwitch.innerHTML = 'show';
+    this.innerHTML = 'hide';
   });
   pwdSwitch.addEventListener('mouseup', function () {
     pwd.setAttribute('type', 'password');
-    this.innerHTML = 'hide';
+    this.innerHTML = 'show';
   });
   pwdSwitch.addEventListener('mouseout', function () {
     pwd.type = 'password';
-    this.innerHTML = 'hide';
+    this.innerHTML = 'show';
   });
 
 </script>

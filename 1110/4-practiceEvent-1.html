@@ -18,8 +18,7 @@
 
   <script>
     const zone = document.getElementById("myBlock");
-    let nowColor = 'red';
-    // let clr = zone.style.backgroundColor; //red
+    let nowColor = zone.style.backgroundColor;
     function trans(type) {
       switch (type) {
         case "A":
@@ -42,13 +41,11 @@
     function color(colorCode) {
       // console.log(colorCode);
       if (zone.style.backgroundColor) {//空字串被當成false
-        zone.style.backgroundColor = colorCode; //換掉方、圓
+        zone.style.backgroundColor = colorCode; //換掉方、圓的顏色
       } else {
-        zone.style.borderBottom = `100px solid ${colorCode}`;//換掉三角形
+        zone.style.borderBottom = `100px solid ${colorCode}`;//換掉三角形的顏色
       }
-      nowColor = colorCode;
-
-      // clr = colorCode; //把所有的色變數更新一下
+      nowColor = colorCode;//將色碼套入每個形狀中
     }
   </script>
 </body>

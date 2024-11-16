@@ -8,47 +8,47 @@
 </head>
 
 <body>
-  <div id="myBlock" style="width:100px;height:100px;background-color: red;"></div>
+  <div id="myBlock"
+    style="width:100px;height:100px;background-color: red; clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);"></div>
   <hr />
-  <input type="button" value="正方形" onclick="trans('A')" />
-  <input type="button" value="圓形" onclick="trans('B')" />
-  <input type="button" value="三角形" onclick="trans('C')" />
-  <p>Color Code: <input type="text" onchange="color(this.value)" /></p>
+  <input type="button" value="正方形" />
+  <input type="button" value="圓形" />
+  <input type="button" value="三角形" />
+  <p>Color Code: <input type="text" /></p>
 
 
   <script>
-    //XXXXXXXXXXXX第二種方法要再複習，還沒改完XXXXXXXXXXXXXXXX
+    //!!!!!!!此方法需再複習!!!!!!!!!!!!
     const zone = document.getElementById("myBlock");
-    let nowColor = 'red';
+
+    //---------------------改形狀事件------------------------
+
+    document.querySelectorAll('input[type="button"]').forEach(item => {
+      // console.log(item);
+      item.addEventListener('click', () => {
+        trans(item.value);
+      });
+    });
+
     function trans(type) {
       switch (type) {
         case "A":
-          zone.style = `width:100px;height:100px;background-color:${nowColor};`
+          zone.style.clipPath = `polygon(0 0, 100% 0, 100% 100%, 0% 100%)`;
           break;
         case "B":
-          zone.style = `width:100px;height:100px;background-color:${nowColor};border-radius: 50px;`;
+          zone.style.clipPath = `circle(50% at 50% 50%)`;
           break;
         case "C":
-          zone.style = `
-          width:0;
-          height:0;
-          border-left: 50px solid transparent;
-          border-right: 50px solid transparent;
-          border-bottom: 100px solid ${nowColor}; 
-          `;
+          zone.style.clipPath = `polygon(50% 0%, 0% 100%, 100% 100%)`;
           break;
       }
     }
-    function color(colorCode) {
-      // console.log(colorCode);
-      if (zone.style.backgroundColor) {//空字串被當成false
-        zone.style.backgroundColor = colorCode; //換掉方、圓
-      } else {
-        zone.style.borderBottom = `100px solid ${colorCode}`;//換掉三角形
-      }
-      nowColor = colorCode;
 
-      // clr = colorCode; //把所有的色變數更新一下
+    //---------------------改顏色事件------------------------
+    document.querySelectorAll('input[type="button"]').addEventListener('change', function () {color(this.value);});
+
+    function color(colorCode) {
+      zone.style.backgroundColor = colorCode;
     }
   </script>
 </body>
