@@ -1,4 +1,4 @@
-//宣告全域變數，利於整個JS都可以讀取到
+//宣告全域變數，讓整個JS都可以讀取到
 const btnStart = document.querySelector('button');//遊戲開始按鈕
 const timeNode = document.querySelector('#time');//60秒倒數
 const countNode = document.querySelector('#combo');//遊戲分數
