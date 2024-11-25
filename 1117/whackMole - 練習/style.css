@@ -13,6 +13,7 @@ body {
     .content {
       display: flex;
       flex-wrap: wrap;
+      min-width: 330px;
 
       img {
         width: 100px;

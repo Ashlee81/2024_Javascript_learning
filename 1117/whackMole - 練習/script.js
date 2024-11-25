@@ -6,6 +6,8 @@ const dogs = document.querySelectorAll('img');//狗狗的圖
 
 let time = 60, score = 0
 
+const redToYellow = [];
+
 
 //規劃功能函式
 const gameStart = () => {
@@ -40,7 +42,7 @@ const gameStart = () => {
     // const showTime = Math.floor(Math.random() * 3) + 2;//曝光時間2 ~ 4 sec => (0~2)+2
     const showObj = {
       space: Math.floor(Math.random() * 9),//指定格子0~8
-      show: Math.floor(Math.random() * 3) + 2,//曝光時間2 ~ 4 sec => (0~2)+2
+      show: (Math.floor(Math.random() * 3) + 2) * 1000,//曝光時間2 ~ 4 sec => (0~2)+2(此處單位為毫秒)
       id: i
     }
 
@@ -51,6 +53,7 @@ const gameStart = () => {
   }
 };
 
+//[此fn控制紅色出現的位置]
 const showIt = (obj) => {
   // console.log(obj);
   /*
@@ -60,6 +63,7 @@ const showIt = (obj) => {
   if (dogs[obj.space].classList.length > 0) {
     // 因為有class，只要不是黃色代表正在執行某個任務，所以得改個位置
     obj.space = Math.floor(Math.random() * 9);//再重新決定0~8
+
 
     /*[step2]如果畫面都是red，大家都找不到空間，大家都馬上去找新位置，
     * 當下會發生無限迴圈不斷找新位置，會導致電腦效能變差
@@ -71,16 +75,23 @@ const showIt = (obj) => {
     return;
 
   } else {
+    //指定red出現的位置
     dogs[obj.space].classList.add('red');
     dogs[obj.space].src = 'img/on.png';
-    setTimeout(() => {
+
+    dogs[obj.space].dataset.playerId = obj.id;//利用dataset來創造一個html屬性,用來記錄100個red事件的index值
+
+    //記下當時timeout的定時器id，利於某時機可以清除❓需複習setTimeout的作用
+    redToYellow[obj.id] = setTimeout(() => {//回傳定時器的序號，把它當作value存入指定index
       dogs[obj.space].classList.remove('red');
       dogs[obj.space].src = 'img/state.png';
-    }, obj.show * 1000);
+      delete dogs[space].dataset.playerId;
+    }, obj.show);
   };
 }
 
-const getScore = (space) => {
+//點擊含有red的圖片時，要執行的任務
+const getScore = (space) => {//此處space值對應HTML中的0~8
   if (dogs[space].classList.contains('red')) {
     //如果是red，計分+1，並讓red to green
     scoreNode.textContent = ++score;
@@ -89,9 +100,17 @@ const getScore = (space) => {
     dogs[space].classList.add('green');
     dogs[space].src = 'img/off.png';
 
-    setTimeout(() => {
+
+    //因為red to green已計分，因此原本red to yellow的定時器要清除
+    // const playerId = dogs[space].dataset.playerId;
+    // const bombSN = redToYellow[playerId];
+    // clearTimeout(bombSN);
+    clearTimeout(redToYellow[dogs[space].dataset.playerId]);//上面三行的簡寫
+
+    setTimeout(() => {//綠色會在維持1秒後轉換為原本預設的黃色
       dogs[space].classList.remove('green');
       dogs[space].src = 'img/state.png';
+      delete dogs[space].dataset.playerId;
     }, 1000);
   };
 }
@@ -113,3 +132,8 @@ document.onkeydown = function (event) {//如果想鎖多個鍵盤事件,可以�
     case 99: getScore(8); break;
   };
 }
+dogs.forEach((dog, index) => {
+  dog.addEventListener('click', () => {
+    getScore(index)
+  });
+});
