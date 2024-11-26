@@ -1,3 +1,4 @@
+fetch()//串接資料
 dayjs.locale('zh-tw');
 
 
