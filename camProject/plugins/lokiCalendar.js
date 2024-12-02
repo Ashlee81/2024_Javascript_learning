@@ -80,7 +80,7 @@ const runCalendarService = () => {
       calRight = {
         title: '',
         listBox: '',
-        thisDate: theDay.add(1, 'month'),////改變下個月份代表日
+        thisDate: theDay.add(1, 'month'),//改變下個月份代表日
       };
     },
     chooseList = (node) => {//負責將現有的DOM規劃selectHead selectFoot selectConnect

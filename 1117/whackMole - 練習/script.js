@@ -53,7 +53,7 @@ const gameStart = () => {
   }
 };
 
-//[此fn控制紅色出現的位置]
+//[此fn控制red出現的位置]
 const showIt = (obj) => {
   // console.log(obj);
   /*
