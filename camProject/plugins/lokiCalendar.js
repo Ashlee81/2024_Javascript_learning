@@ -33,8 +33,7 @@ const init = () => {
       // nationalHoliday = json.nationalHoliday;
       ({ booked, pallet, nationalHoliday } = json);
 
-      myCalendar = runCalendarService();//創造一個服務原生函式，他提供一個method，像是print,add,sub
-
+      myCalendar = runCalendarService();//[閉包觀念]創造一個服務原生函式，他提供一個method，像是print,add,sub
       myCalendar.print();//對此原生函式調用print，產生DOM
 
       //規劃DOM事件
@@ -59,12 +58,12 @@ const runCalendarService = () => {
     calLeft = {
       title: '',
       listBox: '',
-      thisDate: theDay,//今天的時間，當作當月的代表日之time object
+      thisDate: theDay,//今天的時間，當作當月的代表日（time object）
     },
     calRight = {
       title: '',
       listBox: '',
-      thisDate: theDay.add(1, 'month'),//下個月
+      thisDate: theDay.add(1, 'month'),//下個月，當作下個月的代表日（time object）
     };
   const
     today = dayjs(),
@@ -130,6 +129,7 @@ const runCalendarService = () => {
     },
 
     listMaker = (obj) => {//調整萬年曆物件，調整完畢後，返回修改後的物件//❓為何這個fn中的obj會知道是calLeft或calRight
+      console.log(obj);
       // const firstDay = obj.thisDate.date(1).day();
       const firstDay = obj.thisDate.startOf('month').day();//該月第一天為禮拜幾
       const totalDay = obj.thisDate.daysInMonth();//該月有幾天
@@ -141,31 +141,30 @@ const runCalendarService = () => {
       }
 
       for (let i = 1; i <= totalDay; i++) {//控制產生多少日期
-        let classStr = 'JsCal';//將calss獨立為一個變數，可對其追加class name
+        let classStr = 'JsCal';//將class獨立為一個變數，可對其追加class name
 
-        //判定日期是否還可訂房(過期)
-        const tempDay = obj.thisDate.date(i);//每次回圈得數字轉換為當月指定日的time object，dayjs中的date()等同於setDate()，也就是指定'日期'。
-        const tempDayStr = tempDay.format('YYYY-MM-DD');//❓.format()是js原生還是dayjs的功能
-
+        //過期判定
+        const tempDay = obj.thisDate.date(i);//每次回圈得數字轉換為當月指定日的time object。dayjs中的date()等同於setDate()，也就是指定'日期'。
+        const tempDayStr = tempDay.format('YYYY-MM-DD');//.format()可以把time object轉成字串
+        // console.log(tempDayStr);
         if (tempDay.isSameOrBefore(today)) classStr += ' delDay';//透過isSameOrBefore,該日期跟今日比較，符合相同日或早於為true，代表過期
         else {//沒過期再追加以下的class name
-          //判定是否為六、日或國定假日
+          //假日判定
           const isNationalHoliday = nationalHoliday.includes(tempDayStr);
           if (((firstDay + i) % 7 < 2) || isNationalHoliday) classStr += ' holiday';
 
-          //滿帳，訂滿的日期。某次迴圈下，目前為2024-12-02，透過booked find比對是否找到booked date跟2024-12-02一樣，找到就吐回來，沒有就undefined
-          const checkBooObject = booked.find((bookObj) => bookObj.date === tempDayStr);
-
+          //滿帳，訂滿的日期。某次迴圈下，目前為2024-12-02，透過booked find比對是否找到booked date跟2024-12-02一樣
+          const checkBookObject = booked.find((bookObj) => bookObj.date === tempDayStr) ;//找到就吐回來，沒有就undefined
+          
           if (
-            checkBooObject//當天有出現在booked裡面
+            checkBookObject//當天有出現在booked裡面
             &&
-            (pallet.count === Object.values(checkBooObject.sellout).reduce((prv, cur) => prv + cur, 0))//總和等於總售出，如結果為0，代表已售完
+            (pallet.count === Object.values(checkBookObject.sellout).reduce((prv, cur) => prv + cur, 0))//總和等於總售出，如結果為0，代表已售完
           ) classStr += ' fullDay';
 
           //可以選擇的日子select Day
 
           classStr += ' selectDay';
-
         }
         obj.listBox += `<li class="${classStr}" data-date="${tempDayStr}">${i}</li>`;
       }
@@ -238,7 +237,7 @@ const runCalendarService = () => {
 
   // listPrint();
   return {
-    print: () => listPrint(),//💦這邊備註沒寫到
+    print: () => listPrint(),//外面的人可以控制service何時才要輸出萬年曆
     add: () => {
       changeMonth(1);
       listPrint();//再輸出一次
