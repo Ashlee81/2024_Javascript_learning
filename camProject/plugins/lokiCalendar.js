@@ -1,13 +1,12 @@
-fetch()//串接資料
 dayjs.locale('zh-tw');
 
 
 //宣告全域變數區
 let
   apiPath = './db.json',
-  booked = [],
-  nationalHoliday = [],
-  pallet = {};
+  booked = [],//陣列
+  nationalHoliday = [],//陣列
+  pallet = {};//物件
 
 
 //初始化作業
@@ -58,7 +57,7 @@ const runCalendarService = () => {
       const monthTostring = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
       obj.title = `${monthTostring[obj.thisDate.month()]} ${obj.thisDate.year()}`;
       //[方法三]
-      const twMonth=window.dayjs_locale_zh_tw.months;
+      const twMonth = window.dayjs_locale_zh_tw.months;
       obj.title = `${twMonth[obj.thisDate.month()]} ${obj.thisDate.year()}`;
 
       return obj;
