@@ -20,7 +20,6 @@ let
       dArea: { title: '車屋 × D 區', sellCount: 3, sellInfo: '<div></div>', sumPrice: 0, orderCount: 0 }
     }
   };
->>>>>>> 68b34b7bbdfb0f1186b399606e62dd8ae5933fee
 
 
 //初始化作業
