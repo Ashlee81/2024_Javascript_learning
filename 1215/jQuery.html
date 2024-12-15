@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>jQuery</title>
+  <!-- 1. css -->
+  <style>
+    article {
+      font-size: 50px;
+    }
+
+    .hot {
+      color: red;
+    }
+
+    ;
+
+    .cold {
+      color: blue
+    }
+
+    ;
+  </style>
+  <!-- 2.JS -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js'
+    integrity='sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=='
+    crossorigin='anonymous'></script>
+  <script src="./jquery-3.7.1.min.js"></script>
+  <script>
+    $('document').ready(function () {
+      console.log('hello');
+    });
+  </script>
+</head>
+
+<body>
+  <div id="page">
+    <h1 id="header">MyjQueryDemo List</h1>
+    <h2>我的代辦事項</h2>
+    <ul>
+      <li id="one" class="hot"><b>買</b> 晚餐</li>
+      <li id="two" class="hot">練程式</li>
+      <li id="three" class="hot">打電動</li>
+      <li id="four">記得去洗澡</li>
+    </ul>
+    <hr>
+    <div class="contain">
+      <input value="這是一個input" name="username">
+      <input value="這是一個input" type="text" name="username">
+    </div>
+    <input type="checkbox" id="scales" name="scales" checked>
+    <input type="checkbox" id="horns" name="horns">
+  </div>
+  <article>
+    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et excepturi ad atque nemo, itaque ipsa temporibus omnis
+    quo consequatur vitae praesentium quae dicta. Similique fuga quod aliquam, sed sequi quaerat.
+    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et excepturi ad atque nemo, itaque ipsa temporibus omnis
+    quo consequatur vitae praesentium quae dicta. Similique fuga quod aliquam, sed sequi quaerat.
+    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et excepturi ad atque nemo, itaque ipsa temporibus omnis
+    quo consequatur vitae praesentium quae dicta. Similique fuga quod aliquam, sed sequi quaerat.
+    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et excepturi ad atque nemo, itaque ipsa temporibus omnis
+    quo consequatur vitae praesentium quae dicta. Similique fuga quod aliquam, sed sequi quaerat.
+    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et excepturi ad atque nemo, itaque ipsa temporibus omnis
+    quo consequatur vitae praesentium quae dicta. Similique fuga quod aliquam, sed sequi quaerat.
+  </article>
+  <script>
+    // console.log(document.getElementById('header'));
+    //10:10~11:10此段沒聽到(想睡)
+
+    //舉例:為header加上class 'hot'
+    // document.getElementById('header').classList.add('hot'); //js ver
+    // $('#header').addClass('hot'); //jq ver
+    jQuery('#header').addClass('hot'); //jq 另一種寫法
+
+    $('li').each((_, node) => {//工作上，資深工程師會使用底線(_)代表不重要的參數
+      console.log($(node).html());
+    });
+
+    $(document).ready(() => {//可以要求這些工作是在document 準備好之後才做
+      console.log('page end');
+    });
+
+    const showConsole = () => {
+      console.log('click');
+    };
+
+    // $('#header').on('click', showConsole);//增加點擊事件
+    // $('#header').off('click', showConsole);//移除點擊事件
+    $('#header').click(showConsole);//增加點擊事件的簡寫
+
+    $('#header').hover(() => console.log('hover'));//增加滑鼠移入移出事件
+    $('#header').hover(()=>{//使用匿名函式，可以用this來取得被hover的物件
+      console.log($(this).text());
+    });
+    
+    $('form').submit((e) => {
+      e.preventDefault();
+      console.log('submit');//驗證表單是否有效
+    })
+
+  </script>
+</body>
+
+</html>
