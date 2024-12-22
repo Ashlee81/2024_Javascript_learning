@@ -8,9 +8,60 @@
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js'
     integrity='sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=='
     crossorigin='anonymous'></script>
+  <style>
+    .insert-zone {
+      position: fixed;
+      background: #333333AA;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-basis: 50%;
+      color: white;
+      font-weight: bolder;
+      text-align: center;
+    }
+
+    .insert-zone>form {
+      width: 100%;
+    }
+
+    .add-zone {
+      position: fixed;
+      bottom: 50px;
+      right: 50px;
+
+      div {
+        background: #333;
+        border-radius: 50%;
+        color: white;
+        font-weight: bolder;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        transition: all 0.5s;
+
+        &:hover {
+          background-color: #777;
+        }
+
+      }
+    }
+  </style>
 </head>
 
 <body>
+  <div class="add-zone">
+    <div>+</div>
+  </div>
   <table width="100%">
     <thead>
       <tr>
@@ -29,12 +80,17 @@
     </thead>
     <tbody></tbody>
     <tfoot>
-      <td colspan="6" style="text-align: center;">
-        <hr>
-        <button>載入更多</button>
-      </td>
+      <tr>
+        <td colspan="6" style="text-align: center;">
+          <hr>
+          <button>載入更多</button>
+        </td>
+      </tr>
     </tfoot>
   </table>
+  <div class="insert-zone" style="display: none;">
+
+  </div>
 
   <script>
     // $(function () {//會等DOM個讀完再執行
@@ -42,9 +98,10 @@
     // // });
 
 
-    // -------------------------宣告區-------------------------
+    // -------------------------初始宣告區-------------------------
     let start = 0;
     const loadBtn = $('tfoot button');
+    const addBtn = $(`.add-zone div`);
     // const mdyBtn = $('td .mdy');//一開始td裡沒有東西，所以此宣告無效
     const selectAnimal = () => {
       // $.ajax({
@@ -63,52 +120,124 @@
 
           //---------------------新html的事件區---------------------
           //新生成的mdyBtn，沒有要求click
-          $('.mdy').click(changeInputEl);
+          $('.mdy').click(changeToInputEl);
 
           start += 10;
-        } else {
-          // loadBtn.attr('disabled','');
-          // loadBtn.text('沒有更多了');
-          loadBtn.attr('disabled', true).text('沒有更多了');
-        }
+        } else loadBtn.attr('disabled', true).text('沒有更多了');
       }, 'html');
     }
 
+    //此fn負責將該行指定的input內容，壓縮成serialize(from data)，透過ajax提交給後端
     const changeAnimal = (e) => {
       const saveBtn = $(e.target);
       const inputVals = saveBtn.parents('tr').find('input').serialize();
 
       $.post(
-        'http://192.168.211.1/api.php?do=select',
-        inputVals,
-        function (data) {
-          console.log('done');
+        'http://192.168.211.1/api.php?do=update',
+        data,//❗❗這裡有寫錯
+        function (res) {//後端會返回更新時間給前端，想辦法把更新資料補回畫面上
+          // console.log('done');
+          //將目前html畫面上的input，修正回普通的table td(更新後的文字)
+
+          const uncles = saveBtn.parent().siblings();
+
+          const id = uncles.eq(0).find('input').val();
+          const name = uncles.eq(1).find('input').val();
+          const weight = uncles.eq(2).find('input').val();
+          const info = uncles.eq(3).find('input').val();
+          const theTime = res;
+
+          uncles.parent().html(`
+            <td>${id}</td>
+            <td class="name">${name}</td>
+            <td>${weight}</td>
+            <td>${info} </td>
+            <td>${theTime}</td>
+            <td>
+              <button class="mdy">修改</button>
+              <button onclick="deletAnimal(this)">刪除</button>
+            </td>
+          `).find('.mdy').click(changeToInputEl);
+
         });
     };
 
-    // const changeInputEl = function () {
-    //   console.log(this);
-    // }
-    const changeInputEl = (e) => {
+    const deleteAnimal = (node) => {
+      // console.log('js html node', node );
+      // console.log('jq node obj', node );
+      // const id = $(node).parent().siblings().eq(0).text();
+
+      $.post('http://192.168.211.1/api.php?do=delete', { id: $(node).parent().siblings().eq(0).text() }, function (res) {
+        if (res === 'deleted') {
+          $(node).parents('tr').remove();
+        }
+      });
+
+    };
+
+    const insertAnimal = (node) => {
+      const data = $(node).parent().siblings().find('input').serialize();
+      // console.log(data);
+
+      $.post('http://192.168.211.1/api.php?do=insert', data, function (res) {
+        if (res === 'inserted') {
+          closeAddForm();//關閉新增畫面
+
+          //因為資料多一筆，如果不想去判斷畫面何時要插入最後一筆到tbody內
+          //這裡乾脆全部reset重跑selectAnimal
+
+          $('tbody').empty();
+          start = 0;
+          selectAnimal();
+        }
+      });
+    };
+    // 此fn負責將該行指定的td內容變成input
+    const changeToInputEl = (e) => {
       const currentMdyBtn = $(e.target);
       const uncles = currentMdyBtn.parent().siblings();
 
-      currentMdyBtn.parents('tr').html(`
-            <td>${uncles.eq(0).text()}</td>
-            <td class="name">
-              <input text="hide" name="name" value="${uncles.eq(1).text()}">
-            </td>
-            <td>
-              <input name="weight" value="${uncles.eq(2).text()}">
-            </td>
-            <td>
-              <input name="info" value="${uncles.eq(3).text()}">
-            </td>
-            <td>${uncles.eq(4).text()}</td>
-            <td>
-              <button class="save">儲存</button>
-            </td>
-      `).find('.save').click(changeAnimal);
+      currentMdyBtn.parents('tr')
+        .html(`
+        <td>${uncles.eq(0).text()}</td>
+        <td class="name">
+          <input name="name" value="${uncles.eq(1).text()}">
+        </td>
+        <td>
+          <input name="weight" value="${uncles.eq(2).text()}">
+        </td>
+        <td>
+          <input name="info" value="${uncles.eq(3).text()}">
+        </td>
+        <td>${uncles.eq(4).text()}</td>
+        <td>
+          <button class="save">儲存</button>
+        </td>
+      `)
+        .find('.save')
+        .click(changeAnimal);
+    };
+
+    const activeAddForm = () => {//❗❗遮罩沒成功
+      $('.insert-zone')
+        .html(`
+        <form action="">
+          <h1>新增動物資料</h1>
+          <hr>
+          <p>動物：<input type="text" name="name"></p>
+          <p>重量：<input type="text" name="weight"></p>
+          <p>簡介：<input type="text" name="info"></p>
+          <hr>
+          <p>
+            <button type="button" onclick="insertAnimal(this)">新增</button>
+            <button type="button" onclick="closeAddForm()">取消</button>
+          </p>
+        </form>
+      `).fadeIn();
+    };
+
+    const closeAddForm = () => {
+      $('.insert-zone').fadeOut();
     };
 
     // -------------------------事件區-------------------------
